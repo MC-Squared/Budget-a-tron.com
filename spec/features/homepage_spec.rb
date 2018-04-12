@@ -6,7 +6,7 @@ describe 'Homepage' do
   end
 
   it "can be reached successfully" do
-    expect(page).to have_http_status(:success)
+    expect(page.status_code).to eq(200)
   end
 
   it "shows login and register to guest users" do
