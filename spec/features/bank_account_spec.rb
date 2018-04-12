@@ -174,4 +174,44 @@ describe 'navigate' do
       expect(current_path).to eq(root_path)
     end
   end
+
+  describe 'delete' do
+    it 'can be deleted' do
+      logout(:user)
+
+      delete_user = FactoryBot.create(:user)
+      login_as(delete_user, :scope => :user)
+
+      bank_account_to_delete = BankAccount.create(
+        name: 'name',
+        bank_number: 'asdf',
+        user: delete_user,
+      )
+
+      visit edit_bank_account_path(bank_account_to_delete)
+
+      expect { click_on 'delete_bank_account' }.to change(BankAccount, :count).by(-1)
+      expect(page.status_code).to eq(200)
+    end
+
+    it 'can only be deleted by owner' do
+      logout(:user)
+
+      delete_user = FactoryBot.create(:user)
+      login_as(delete_user)
+
+      bank_account_to_delete = BankAccount.create(
+        name: 'name',
+        bank_number: 'asdf',
+        user: delete_user,
+      )
+
+      visit edit_bank_account_path(bank_account_to_delete)
+
+      bank_account_to_delete.update!(user: user)
+
+      expect { click_on 'delete_bank_account' }.to change(BankAccount, :count).by(0)
+      expect(current_path).to eq(root_path)
+    end
+  end
 end

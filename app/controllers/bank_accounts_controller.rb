@@ -1,13 +1,13 @@
 class BankAccountsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_bank_account, only: [:show, :edit, :update]
+  before_action :set_bank_account, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_bank_account, only: [:show, :edit, :update, :destroy]
 
   def index
     @bank_accounts = current_user.bank_accounts
   end
 
   def show
-    authorize @bank_account
   end
 
   def new
@@ -25,12 +25,9 @@ class BankAccountsController < ApplicationController
   end
 
   def edit
-    authorize @bank_account
   end
 
   def update
-    authorize @bank_account
-
     if @bank_account.update(bank_account_params)
       redirect_to bank_account_path(@bank_account), notice: 'Account was successfully updated.'
     else
@@ -38,10 +35,19 @@ class BankAccountsController < ApplicationController
     end
   end
 
+  def destroy
+    @bank_account.destroy
+    redirect_to bank_accounts_url, notice: 'Account was successfully destroyed.'
+  end
+
   private
 
   def set_bank_account
     @bank_account = BankAccount.find(params[:id])
+  end
+
+  def authorize_bank_account
+    authorize @bank_account
   end
 
   def bank_account_params
