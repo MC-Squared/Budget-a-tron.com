@@ -1,12 +1,13 @@
 class BankAccountsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_bank_account, only: [:show, :edit, :update]
 
   def index
     @bank_accounts = current_user.bank_accounts
   end
 
   def show
-    @bank_account = BankAccount.find(params[:id])
+    authorize @bank_account
   end
 
   def new
@@ -24,12 +25,11 @@ class BankAccountsController < ApplicationController
   end
 
   def edit
-    @bank_account = BankAccount.find(params[:id]) #current_user.bank_accounts.find(params[:id])
-    # redirect_to root_path unless @bank_account
+    authorize @bank_account
   end
 
   def update
-    @bank_account = BankAccount.find(params[:id])
+    authorize @bank_account
 
     if @bank_account.update(bank_account_params)
       redirect_to bank_account_path(@bank_account), notice: 'Account was successfully updated.'
@@ -39,6 +39,10 @@ class BankAccountsController < ApplicationController
   end
 
   private
+
+  def set_bank_account
+    @bank_account = BankAccount.find(params[:id])
+  end
 
   def bank_account_params
     params.require(:bank_account).permit(:user_id, :name, :bank_number)

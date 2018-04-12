@@ -102,6 +102,15 @@ describe 'navigate' do
       click_link('edit_bank_account')
       expect(page.status_code).to eq(200)
     end
+
+    it 'cannot be viewed by a non authorized user' do
+      logout(:user)
+      login_as(FactoryBot.create(:second_user))
+
+      visit bank_account_path(account)
+
+      expect(current_path).to eq(root_path)
+    end
   end
 
   describe 'creation' do
@@ -154,6 +163,15 @@ describe 'navigate' do
       click_on 'Save'
 
       expect(page).to have_content(/Edited Number/)
+    end
+
+    it 'cannot be edited by a non authorized user' do
+      logout(:user)
+      login_as(FactoryBot.create(:second_user))
+
+      visit edit_bank_account_path(account)
+
+      expect(current_path).to eq(root_path)
     end
   end
 end
