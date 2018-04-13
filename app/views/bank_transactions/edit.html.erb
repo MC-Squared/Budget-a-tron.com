@@ -1,0 +1,5 @@
+<h1>Editing Bank Transaction</h1>
+<%= render 'form', bank_transaction: @bank_transaction %>
+<%= link_to 'Show', bank_account_bank_transaction_path(@bank_transaction.bank_account, @bank_transaction) %> |
+<%= link_to 'Back', bank_account_bank_transactions_path(@bank_transaction.bank_account) %>
+<td><%= link_to 'Destroy', bank_account_bank_transaction_path(@bank_transaction.bank_account), method: :delete, data: { confirm: 'Are you sure?' }, id: 'delete_bank_transaction' %></td>

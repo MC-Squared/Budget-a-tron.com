@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+<h1>Account Transactions</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Amount</th>
+      <th>Status</th>
+      <th>Number</th>
+      <th>Payee</th>
+      <th>Memo</th>
+      <th>Adress</th>
+      <th>Category</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @bank_account.bank_transactions.each do |bank_transaction| %>
+      <tr>
+        <td><%= bank_transaction.date %></td>
+        <td><%= bank_transaction.amount %></td>
+        <td><%= bank_transaction.status %></td>
+        <td><%= bank_transaction.number %></td>
+        <td><%= bank_transaction.payee %></td>
+        <td><%= bank_transaction.memo %></td>
+        <td><%= bank_transaction.adress %></td>
+        <td><%= bank_transaction.category %></td>
+        <td><%#= link_to 'Show', bank_account_bank_transaction_path(bank_transaction) %></td>
+        <td><%#= link_to 'Edit', edit_bank_transaction_path(bank_transaction) %></td>
+        <td><%#= link_to 'Destroy', bank_transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<%= link_to 'New Bank Transaction', new_bank_account_bank_transaction_path(@bank_account), id: 'new_bank_transaction'%>

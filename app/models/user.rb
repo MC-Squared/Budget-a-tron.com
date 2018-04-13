@@ -6,4 +6,5 @@ class User < ApplicationRecord
          :confirmable, :lockable
 
   has_many :bank_accounts
+  has_many :bank_transactions, through: :bank_accounts
 end

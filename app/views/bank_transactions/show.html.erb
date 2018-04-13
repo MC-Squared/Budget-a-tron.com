@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>Date:</strong>
+  <%= @bank_transaction.date %>
+</p>
+<p>
+  <strong>Amount:</strong>
+  <%= @bank_transaction.amount %>
+</p>
+<p>
+  <strong>Status:</strong>
+  <%= @bank_transaction.status %>
+</p>
+<p>
+  <strong>Number:</strong>
+  <%= @bank_transaction.number %>
+</p>
+<p>
+  <strong>Payee:</strong>
+  <%= @bank_transaction.payee %>
+</p>
+<p>
+  <strong>Memo:</strong>
+  <%= @bank_transaction.memo %>
+</p>
+<p>
+  <strong>Adress:</strong>
+  <%= @bank_transaction.adress %>
+</p>
+<p>
+  <strong>Category:</strong>
+  <%= @bank_transaction.category %>
+</p>
+<%= link_to 'Edit', edit_bank_account_bank_transaction_path(@bank_transaction.bank_account, @bank_transaction), id: 'edit_bank_transaction' %> |
+<%= link_to 'Back', bank_account_bank_transactions_path(@bank_transaction.bank_account) %>
