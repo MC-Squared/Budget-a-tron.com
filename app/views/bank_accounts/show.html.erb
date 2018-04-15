@@ -1,2 +1,9 @@
 <%= @bank_account.inspect %>
 <%= link_to 'Edit', edit_bank_account_path(@bank_account), id: 'edit_bank_account' %>
+
+<%= form_tag(bank_account_imports_create_path(@bank_account), multipart: true) do %>
+  <div class="form-group">
+    <%= file_field_tag :file %>
+    <%= submit_tag 'Import', class: 'btn-primary'  %>
+  </div>
+<% end %>

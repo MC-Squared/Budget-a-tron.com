@@ -125,6 +125,7 @@ GEM
     puma (3.11.3)
     pundit (1.1.0)
       activesupport (>= 3.0.0)
+    qif (1.2.0)
     rack (2.0.4)
     rack-proxy (0.6.4)
       rack
@@ -246,6 +247,7 @@ DEPENDENCIES
   pry-rails (~> 0.3.6)
   puma (~> 3.11)
   pundit (~> 1.1)
+  qif (~> 1.2)
   rails (~> 5.2.0)
   rspec-rails (~> 3.7, >= 3.7.2)
   sass-rails (~> 5.0)
