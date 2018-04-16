@@ -1,10 +1,41 @@
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
-<nav>
-  <% if user_signed_in? %>
-    <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'logout' %>
-  <% else %>
-    <%= link_to 'Register', new_user_session_path, class: 'register' %>
-    <%= link_to 'Login', new_user_session_path, class: 'login' %>
-  <% end %>
-</nav>
+
+<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+  <%= image_tag 'logo.svg', class: "watermark-logo float-left " %>
+  <div class="col-md-5 p-lg-5 mx-auto my-5">
+    <h1 class="display-5 font-weight-normal">Budget-a-tron</h1>
+    <p class="lead font-weight-normal">Bank statements go in.<br>
+      Knowledge comes out.</p>
+    <%= link_to 'Log In', new_user_session_path, class: 'btn btn-outline-secondary' %>
+    <%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-outline-secondary' %>
+  </div>
+
+</div>
+<div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+  <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+    <div class="my-3 py-3">
+      <h2 class="display-5">Bank Statements</h2>
+      <p class="lead">Import as QIF</p>
+    </div>
+    <div>
+      <%= image_tag 'bank_statements.svg', class: 'home-workflow-img' %>
+      <div class='chevron float-right'>&rang;</div>
+    </div>
+  </div>
+  <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+    <div class="my-3 p-3">
+      <h2 class="display-5">Budget-a-tron</h2>
+      <p class="lead">Works its magic</p>
+    </div>
+    <%= image_tag 'logo.svg', class: 'home-workflow-img' %>
+    <div class='chevron float-right logo-color'>&rang;</div>
+  </div>
+  <div class="bg-primary mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+    <div class="my-3 p-3">
+      <h2 class="display-5">Enlightenment</h2>
+      <p class="lead">See your finances</p>
+    </div>
+    <%= image_tag 'knowledge.svg', class: 'home-workflow-img' %>
+  </div>
+</div>

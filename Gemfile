@@ -34,3 +34,5 @@ end
 gem 'devise', '~> 4.4', '>= 4.4.3'
 gem 'pundit', '~> 1.1'
 gem 'qif', '~> 1.2'
+gem 'bootstrap', '~> 4.0'
+gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
