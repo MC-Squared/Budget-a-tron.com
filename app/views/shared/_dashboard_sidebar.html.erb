@@ -1,0 +1,45 @@
+<nav class="col-md-2 d-none d-md-block bg-light sidebar">
+  <div class="sidebar-sticky">
+    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+      <span>Accounts</span>
+      <%= link_to new_bank_account_path, class: 'd-flex align-items-center text-muted', id: 'new_bank_account' do %>
+        <span data-feather="plus-circle"></span>
+      <% end %>
+    </h6>
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <%= link_to bank_accounts_path, class: 'nav-link active' do %>
+          <span data-feather="home"></span>
+          Overview <span class="sr-only">(current)</span>
+        <% end %>
+      </li>
+      <% get_sidebar_bank_accounts.each do |ba| %>
+        <li class="nav-item">
+          <%= link_to bank_account_path(ba), class: 'nav-link' do %>
+            <span data-feather="file"></span>
+            <%= ba.name %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+      <span>Saved reports</span>
+      <a class="d-flex align-items-center text-muted" href="#">
+        <span data-feather="plus-circle"></span>
+      </a>
+    </h6>
+    <ul class="nav flex-column mb-2">
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <span data-feather="file-text"></span>
+          By Salary
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<!-- Icons -->
+<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+<script>
+  feather.replace()
+</script>

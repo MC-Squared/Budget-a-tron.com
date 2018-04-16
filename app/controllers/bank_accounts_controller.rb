@@ -1,4 +1,5 @@
 class BankAccountsController < ApplicationController
+  layout 'dashboard'
   before_action :authenticate_user!
   before_action :set_bank_account, only: [:show, :edit, :update, :destroy]
   before_action :authorize_bank_account, only: [:show, :edit, :update, :destroy]
