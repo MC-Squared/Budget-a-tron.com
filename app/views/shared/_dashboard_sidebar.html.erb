@@ -8,14 +8,14 @@
     </h6>
     <ul class="nav flex-column">
       <li class="nav-item">
-        <%= link_to bank_accounts_path, class: 'nav-link active' do %>
+        <%= link_to bank_accounts_path, class: "nav-link #{active? bank_accounts_path}" do %>
           <span data-feather="home"></span>
           Overview <span class="sr-only">(current)</span>
         <% end %>
       </li>
       <% get_sidebar_bank_accounts.each do |ba| %>
         <li class="nav-item">
-          <%= link_to bank_account_path(ba), class: 'nav-link' do %>
+          <%= link_to bank_account_path(ba), class: "nav-link #{active? bank_account_path(ba)}" do %>
             <span data-feather="file"></span>
             <%= ba.name %>
           <% end %>
