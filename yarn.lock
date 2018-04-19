@@ -1192,6 +1192,10 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
+classnames@^2.2.5:
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.5.tgz#fb3801d453467649ef3603c7d61a02bd129bde6d"
+
 cliui@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/cliui/-/cliui-2.1.0.tgz#4b475760ff80264c762c3a1719032e91c7fea0d1"
@@ -2121,6 +2125,12 @@ faye-websocket@~0.11.0:
   resolved "https://registry.yarnpkg.com/faye-websocket/-/faye-websocket-0.11.1.tgz#f0efe18c4f56e4f40afc7e06c719fd5ee6188f38"
   dependencies:
     websocket-driver ">=0.5.1"
+
+feather-icons@^4.7.0:
+  version "4.7.0"
+  resolved "https://registry.yarnpkg.com/feather-icons/-/feather-icons-4.7.0.tgz#78b4c78022f091b94e57b1b6fc81721a76387cfd"
+  dependencies:
+    classnames "^2.2.5"
 
 file-loader@^1.1.6:
   version "1.1.11"

@@ -15,6 +15,7 @@
 //= require bootstrap-sprockets
 //= require Chart.bundle
 //= require chartkick
+//= require feather-icons/dist/feather
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks

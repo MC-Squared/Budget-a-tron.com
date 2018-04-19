@@ -9,14 +9,14 @@
     <ul class="nav flex-column">
       <li class="nav-item">
         <%= link_to bank_accounts_path, class: "nav-link #{active? bank_accounts_path}" do %>
-          <span data-feather="home"></span>
-          Overview <span class="sr-only">(current)</span>
+          <span data-feather="book-open"></span>
+          Overview
         <% end %>
       </li>
       <% get_sidebar_bank_accounts.each do |ba| %>
         <li class="nav-item">
           <%= link_to bank_account_path(ba), class: "nav-link #{active? bank_account_path(ba)}" do %>
-            <span data-feather="file"></span>
+            <span data-feather="bar-chart-2"></span>
             <%= ba.name %>
           <% end %>
         </li>
@@ -31,7 +31,7 @@
     <ul class="nav flex-column mb-2">
       <li class="nav-item">
         <a class="nav-link" href="#">
-          <span data-feather="file-text"></span>
+          <span data-feather="pie-chart"></span>
           By Salary
         </a>
       </li>
@@ -39,7 +39,6 @@
   </div>
 </nav>
 <!-- Icons -->
-<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
 <script>
   feather.replace()
 </script>
