@@ -7,4 +7,5 @@ class User < ApplicationRecord
 
   has_many :bank_accounts
   has_many :bank_transactions, through: :bank_accounts
+  has_many :categories
 end
