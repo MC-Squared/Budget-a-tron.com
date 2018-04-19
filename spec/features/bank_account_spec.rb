@@ -49,7 +49,7 @@ describe 'navigate' do
     end
 
     it 'has a tile of Bank Accounts' do
-      expect(page).to have_content(/Bank Accounts/)
+      expect(page).to have_content(/Overview/)
     end
 
     it 'has a list of bank accounts' do
