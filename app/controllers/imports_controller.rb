@@ -1,6 +1,6 @@
 class ImportsController < ApplicationController
   def create
-    @bank_account = current_user.bank_accounts.find(params[:bank_account_id])
+    @bank_account = policy_scope(BankAccount).find(params[:bank_account_id])
 
     file = params[:file]
     if file.blank?

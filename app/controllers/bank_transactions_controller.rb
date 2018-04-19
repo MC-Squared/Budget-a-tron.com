@@ -5,21 +5,28 @@ class BankTransactionsController < ApplicationController
   before_action :authorize_bank_transaction, only: [:show, :edit, :update, :destroy]
 
   def index
-    @bank_account = current_user.bank_accounts.includes(:bank_transactions).find(params[:bank_account_id])
+    @bank_account = policy_scope(BankAccount)
+                      .includes(:bank_transactions)
+                      .find(params[:bank_account_id])
   end
 
   def show
   end
 
   def new
-    @bank_transaction = current_user.bank_accounts.find(params[:bank_account_id]).bank_transactions.build
+    @bank_transaction = policy_scope(BankAccount)
+                        .find(params[:bank_account_id])
+                        .bank_transactions.build
   end
 
   def edit
   end
 
   def create
-    @bank_transaction = current_user.bank_accounts.find(params[:bank_account_id]).bank_transactions.build(bank_transaction_params)
+    @bank_transaction = policy_scope(BankAccount)
+                          .find(params[:bank_account_id])
+                          .bank_transactions
+                          .build(bank_transaction_params)
 
     if @bank_transaction.save
        redirect_to bank_account_bank_transactions_path(@bank_transaction.bank_account, @bank_transaction), notice: 'Bank transaction was successfully created.'

@@ -5,8 +5,8 @@ class BankAccountsController < ApplicationController
   before_action :authorize_bank_account, only: [:show, :edit, :update, :destroy]
 
   def index
-    bank_accounts = current_user.bank_accounts.includes(:bank_transactions)
-    dates = current_user.bank_transactions.distinct(:date).pluck(:date).sort
+    bank_accounts = policy_scope(BankAccount).includes(:bank_transactions)
+    dates = policy_scope(BankTransaction).distinct(:date).pluck(:date).sort
     @bank_account_sums = []
     bank_accounts.each do |ba|
       @bank_account_sums << {
