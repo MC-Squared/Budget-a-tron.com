@@ -1,6 +1,14 @@
-<%= @bank_account.inspect %>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+  <h1><%= @bank_account.name %></h1>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+      <span data-feather="calendar"></span>
+      This week
+    </button>
+  </div>
+</div>
+<%= area_chart_helper @bank_account_sums, legend: false %>
 <%= link_to 'Edit', edit_bank_account_path(@bank_account), id: 'edit_bank_account' %>
-
 <%= form_tag(bank_account_imports_create_path(@bank_account), multipart: true) do %>
   <div class="form-group">
     <%= file_field_tag :file %>

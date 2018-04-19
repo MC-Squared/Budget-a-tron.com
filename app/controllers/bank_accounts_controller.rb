@@ -17,6 +17,10 @@ class BankAccountsController < ApplicationController
   end
 
   def show
+    @bank_account_sums = {
+      name: @bank_account.name,
+      data: calculate_cumulative_sums_by_day(@bank_account),
+    }
   end
 
   def new
