@@ -59,6 +59,10 @@ describe 'BankAccount' do
         click_link('new_bank_account')
         expect(current_path).to eq(new_bank_account_path)
       end
+
+      it 'has a link to the category index page' do
+        click_link('categories_index')
+        expect(current_path).to eq(categories_path)
       end
     end
 
