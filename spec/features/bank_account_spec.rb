@@ -65,10 +65,11 @@ describe 'navigate' do
 
     it 'has a scope so that users can only see their own accounts' do
       other_user = FactoryBot.create(:second_user)
-      other_user_account = BankAccount.create(
+      other_user_account = BankAccount.create!(
                                         user: other_user,
                                         name: 'should be hidden',
-                                        bank_number: 'dont see me'
+                                        bank_number: 'dont see me',
+                                        start_balance: 0
                                       )
 
       visit bank_accounts_path
@@ -126,6 +127,7 @@ describe 'navigate' do
     it 'can be created from new form page' do
       fill_in 'bank_account[name]', with: 'Test Account Name'
       fill_in 'bank_account[bank_number]', with: '123-test-456'
+      fill_in 'bank_account[start_balance]', with: 123
 
       expect { click_on 'Save' }.to change(BankAccount, :count).by(1)
     end
@@ -133,6 +135,7 @@ describe 'navigate' do
     it 'will have a user associated with it' do
       fill_in 'bank_account[name]', with: 'Test User Assoc'
       fill_in 'bank_account[bank_number]', with: '123-test-456'
+      fill_in 'bank_account[start_balance]', with: 456
       click_on 'Save'
 
       expect(user.bank_accounts.last.name).to eq('Test User Assoc')
@@ -158,11 +161,10 @@ describe 'navigate' do
     end
 
     it 'can be edited from edit form page' do
-      fill_in 'bank_account[name]', with: 'Test Account Name'
-      fill_in 'bank_account[bank_number]', with: 'Edited Number'
+      fill_in 'bank_account[name]', with: 'Edited Account Name'
       click_on 'Save'
 
-      expect(page).to have_content(/Edited Number/)
+      expect(page).to have_content(/Edited Account Name/)
     end
 
     it 'cannot be edited by a non authorized user' do
@@ -182,10 +184,11 @@ describe 'navigate' do
       delete_user = FactoryBot.create(:user)
       login_as(delete_user, :scope => :user)
 
-      bank_account_to_delete = BankAccount.create(
+      bank_account_to_delete = BankAccount.create!(
         name: 'name',
         bank_number: 'asdf',
         user: delete_user,
+        start_balance: 0
       )
 
       visit edit_bank_account_path(bank_account_to_delete)
@@ -200,10 +203,11 @@ describe 'navigate' do
       delete_user = FactoryBot.create(:user)
       login_as(delete_user)
 
-      bank_account_to_delete = BankAccount.create(
+      bank_account_to_delete = BankAccount.create!(
         name: 'name',
         bank_number: 'asdf',
         user: delete_user,
+        start_balance: 0
       )
 
       visit edit_bank_account_path(bank_account_to_delete)

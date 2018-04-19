@@ -64,7 +64,7 @@ class BankAccountsController < ApplicationController
   end
 
   def bank_account_params
-    params.require(:bank_account).permit(:user_id, :name, :bank_number)
+    params.require(:bank_account).permit(:user_id, :name, :bank_number, :start_balance)
   end
 
   def calculate_cumulative_sums_by_day(bank_account, dates=[])

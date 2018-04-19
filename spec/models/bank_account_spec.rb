@@ -7,7 +7,8 @@ RSpec.describe BankAccount, type: :model do
       account = BankAccount.create(
         user: user,
         name: 'bank account',
-        bank_number: '123-fake-number'
+        bank_number: '123-fake-number',
+        start_balance: 10
       )
       expect(account).to be_valid
     end

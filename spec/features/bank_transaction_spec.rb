@@ -189,13 +189,8 @@ describe 'navigate' do
       logout(:user)
 
       delete_user = FactoryBot.create(:user)
+      account = FactoryBot.create(:bank_account, user: delete_user)
       login_as(delete_user, :scope => :user)
-
-      account = BankAccount.create(
-        name: 'name',
-        bank_number: 'asdf',
-        user: delete_user,
-      )
 
       transaction_to_delete = BankTransaction.create(
         payee: 'test payee',
@@ -213,13 +208,8 @@ describe 'navigate' do
       logout(:user)
 
       delete_user = FactoryBot.create(:user)
+      account = FactoryBot.create(:bank_account, user: delete_user)
       login_as(delete_user)
-
-      account = BankAccount.create(
-        name: 'name',
-        bank_number: 'asdf',
-        user: delete_user,
-      )
 
       transaction_to_delete = BankTransaction.create(
         payee: 'test payee',
