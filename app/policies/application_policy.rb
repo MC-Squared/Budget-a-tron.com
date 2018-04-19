@@ -50,4 +50,10 @@ class ApplicationPolicy
       scope
     end
   end
+
+  private
+
+  def user_is_owner?
+    record.user_id == user.id
+  end
 end

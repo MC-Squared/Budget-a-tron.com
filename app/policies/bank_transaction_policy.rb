@@ -1,11 +1,4 @@
 class BankTransactionPolicy < ApplicationPolicy
-  attr_reader :user, :bank_transaction
-
-  def initialize(user, bank_transaction)
-    @user = user
-    @bank_transaction = bank_transaction
-  end
-
   def show?
     user_is_owner?
   end
@@ -21,6 +14,6 @@ class BankTransactionPolicy < ApplicationPolicy
   private
 
   def user_is_owner?
-    @bank_transaction.bank_account.user_id == @user.id
+    record.bank_account.user_id == user.id
   end
 end
