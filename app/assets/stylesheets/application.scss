@@ -85,10 +85,7 @@
 /*
  * Custom styles
  */
-.nav-logo {
-  width: 24px;
-  height: 24px;
-}
+@import 'nav_bar_brand';
 
 .home-workflow-img {
   width: 60%;
@@ -101,7 +98,6 @@
   -webkit-transform: rotate(30deg);
   transform: rotate(30deg);
 }
-
 .chevron {
   font-size: 100px;
   padding-top: 75px;

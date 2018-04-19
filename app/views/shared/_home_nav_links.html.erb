@@ -1,8 +1,7 @@
 <nav class="site-header sticky-top py-1">
   <div class="container d-flex flex-column flex-md-row justify-content-between">
     <%= link_to root_path, class: 'py-2' do %>
-      <%= image_tag 'logo-white.svg', class: 'nav-logo' %>
-      Budget-a-tron
+      <%= nav_bar_brand %>
     <% end %>
     <% if user_signed_in? %>
       <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'py-2 d-none d-md-inline-block logout' %>
