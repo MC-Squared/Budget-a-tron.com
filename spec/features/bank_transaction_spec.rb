@@ -11,7 +11,7 @@ describe 'BankTransaction' do
 
   describe 'authorization' do
     it 'does not allow access without being signed in' do
-      visit bank_account_bank_transactions_path(bank_transaction)
+      visit bank_account_bank_transactions_path(bank_transaction.bank_account)
       expect(current_path).to eq(new_user_session_path)
     end
   end
@@ -24,7 +24,7 @@ describe 'BankTransaction' do
       end
 
       it 'can be reached successfully' do
-        expect(page.status_code).to eq(200)
+        expect(current_path).to eq(bank_account_bank_transactions_path(bank_transaction.bank_account))
       end
 
       it 'has a tile of Account Transactions' do
@@ -64,7 +64,7 @@ describe 'BankTransaction' do
 
       it 'has a link to the new page' do
         click_link('new_bank_transaction')
-        expect(page.status_code).to eq(200)
+        expect(current_path).to eq(new_bank_account_bank_transaction_path(bank_transaction.bank_account))
       end
     end
 
@@ -80,7 +80,7 @@ describe 'BankTransaction' do
 
       it 'has a link to the edit page' do
         click_link('edit_bank_transaction')
-        expect(page.status_code).to eq(200)
+        expect(current_path).to eq(edit_bank_account_bank_transaction_path(bank_transaction.bank_account, bank_transaction))
       end
 
       it 'cannot be viewed by a non authorized user' do
@@ -100,7 +100,7 @@ describe 'BankTransaction' do
       end
 
       it 'has a new form that can be reached' do
-        expect(page.status_code).to eq(200)
+        expect(current_path).to eq(new_bank_account_bank_transaction_path(bank_transaction.bank_account))
       end
 
       it 'can be created from new form page' do
@@ -134,7 +134,7 @@ describe 'BankTransaction' do
       end
 
       it 'has an edit form that can be reached' do
-        expect(page.status_code).to eq(200)
+        expect(current_path).to eq(edit_bank_account_bank_transaction_path(bank_transaction.bank_account, bank_transaction))
       end
 
       it 'can be edited from edit form page' do
@@ -172,7 +172,7 @@ describe 'BankTransaction' do
         visit edit_bank_account_bank_transaction_path(account, transaction_to_delete)
 
         expect { click_on 'delete_bank_transaction' }.to change(BankTransaction, :count).by(-1)
-        expect(page.status_code).to eq(200)
+        expect(current_path).to eq(bank_account_bank_transactions_path(account))
       end
 
       it 'can only be deleted by owner' do

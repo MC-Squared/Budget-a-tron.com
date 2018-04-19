@@ -24,7 +24,7 @@ describe 'category' do
       end
 
       it 'can be reached successfully' do
-        expect(page.status_code).to eq(200)
+        expect(current_path).to eq(categories_path)
       end
 
       it 'has a tile of Categories' do
@@ -114,7 +114,7 @@ describe 'category' do
     end
 
     it 'has an edit form that can be reached' do
-      expect(page.status_code).to eq(200)
+      expect(current_path).to eq(edit_category_path(category))
     end
 
     it 'can be edited from edit form page' do
@@ -145,7 +145,7 @@ describe 'category' do
         visit edit_category_path(category_to_delete)
 
         expect { click_on 'delete_category' }.to change(Category, :count).by(-1)
-        expect(page.status_code).to eq(200)
+        expect(current_path).to eq(categories_path)
       end
 
       it 'can only be deleted by owner' do

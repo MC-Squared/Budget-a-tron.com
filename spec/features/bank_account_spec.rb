@@ -24,7 +24,7 @@ describe 'BankAccount' do
       end
 
       it 'can be reached successfully' do
-        expect(page.status_code).to eq(200)
+        expect(current_path).to eq(bank_accounts_path)
       end
 
       it 'has a tile of Bank Accounts' do
@@ -55,9 +55,10 @@ describe 'BankAccount' do
         expect(page).to_not have_content(/should be hidden/)
       end
 
-      it 'has a link to the new page' do
+      it 'has a link to the new bank account page' do
         click_link('new_bank_account')
-        expect(page.status_code).to eq(200)
+        expect(current_path).to eq(new_bank_account_path)
+      end
       end
     end
 
@@ -73,7 +74,7 @@ describe 'BankAccount' do
 
       it 'has a link to the edit page' do
         click_link('edit_bank_account')
-        expect(page.status_code).to eq(200)
+        expect(current_path).to eq(edit_bank_account_path(account))
       end
 
       it 'cannot be viewed by a non authorized user' do
@@ -93,7 +94,7 @@ describe 'BankAccount' do
       end
 
       it 'has a new form that can be reached' do
-        expect(page.status_code).to eq(200)
+        expect(current_path).to eq(new_bank_account_path)
       end
 
       it 'can be created from new form page' do
@@ -121,7 +122,7 @@ describe 'BankAccount' do
       end
 
       it 'has an edit form that can be reached' do
-        expect(page.status_code).to eq(200)
+        expect(current_path).to eq(edit_bank_account_path(account))
       end
 
       it 'can be edited from edit form page' do
@@ -158,7 +159,7 @@ describe 'BankAccount' do
         visit edit_bank_account_path(bank_account_to_delete)
 
         expect { click_on 'delete_bank_account' }.to change(BankAccount, :count).by(-1)
-        expect(page.status_code).to eq(200)
+        expect(current_path).to eq(bank_accounts_path)
       end
 
       it 'can only be deleted by owner' do
