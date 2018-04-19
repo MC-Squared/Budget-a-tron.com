@@ -11,7 +11,7 @@ class ApplicationPolicy
   end
 
   def show?
-    scope.where(:id => record.id).exists?
+    record_exists_for_user?
   end
 
   def create?
@@ -23,7 +23,7 @@ class ApplicationPolicy
   end
 
   def update?
-    false
+    record_exists_for_user?
   end
 
   def edit?
@@ -31,7 +31,7 @@ class ApplicationPolicy
   end
 
   def destroy?
-    false
+    record_exists_for_user?
   end
 
   def scope
@@ -47,13 +47,13 @@ class ApplicationPolicy
     end
 
     def resolve
-      scope
+      scope.where(user: user)
     end
   end
 
   private
 
-  def user_is_owner?
-    record.user_id == user.id
+  def record_exists_for_user?
+    scope.where(id: record.id).exists?
   end
 end
