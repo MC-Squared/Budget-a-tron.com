@@ -65,7 +65,8 @@ class BankTransactionsController < ApplicationController
         :number,
         :payee,
         :memo,
-        :adress,
-        :category)
+        :address,
+        :bank_category,
+        :category_id)
     end
 end

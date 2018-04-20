@@ -9,8 +9,8 @@
       <th>Number</th>
       <th>Payee</th>
       <th>Memo</th>
-      <th>Adress</th>
-      <th>Category</th>
+      <th>Address</th>
+      <th>Bank Category</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -23,8 +23,8 @@
         <td><%= bank_transaction.number %></td>
         <td><%= bank_transaction.payee %></td>
         <td><%= bank_transaction.memo %></td>
-        <td><%= bank_transaction.adress %></td>
-        <td><%= bank_transaction.category %></td>
+        <td><%= bank_transaction.address %></td>
+        <td><%= bank_transaction.bank_category %></td>
         <td><%#= link_to 'Show', bank_account_bank_transaction_path(bank_transaction) %></td>
         <td><%#= link_to 'Edit', edit_bank_transaction_path(bank_transaction) %></td>
         <td><%#= link_to 'Destroy', bank_transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>

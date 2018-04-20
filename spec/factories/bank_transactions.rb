@@ -6,8 +6,8 @@ FactoryBot.define do
     number 1
     payee "MyString"
     memo "MyString"
-    adress "MyString"
-    category "MyString"
+    address "MyString"
+    bank_category "MyString"
     bank_account
   end
 
@@ -18,8 +18,8 @@ FactoryBot.define do
     number 1
     payee "MyString"
     memo "MyString"
-    adress "MyString"
-    category "MyString"
+    address "MyString"
+    bank_category "MyString"
     bank_account
   end
 end

@@ -13,8 +13,8 @@ module QIFImport
         number: transaction.number,
         payee: transaction.payee,
         memo: transaction.memo,
-        adress: transaction.adress,
-        category: transaction.category
+        address: transaction.adress,
+        bank_category: transaction.category
       }
     end
     transactions
