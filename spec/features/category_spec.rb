@@ -133,36 +133,34 @@ describe 'category' do
 
       expect(current_path).to eq(root_path)
     end
+  end
 
-    describe 'delete' do
-      it 'can be deleted' do
-        logout(:user)
+  describe 'delete' do
+    let(:delete_user) do
+      FactoryBot.create(:user)
+    end
 
-        delete_user = FactoryBot.create(:user)
-        category_to_delete = FactoryBot.create(:category, user: delete_user)
-        login_as(delete_user, :scope => :user)
+    let(:category_to_delete) do
+      FactoryBot.create(:category, user: delete_user)
+    end
 
-        visit edit_category_path(category_to_delete)
+    before do
+      logout(:user)
+      login_as(delete_user, :scope => :user)
 
-        expect { click_on 'delete_category' }.to change(Category, :count).by(-1)
-        expect(current_path).to eq(categories_path)
-      end
+      visit edit_category_path(category_to_delete)
+    end
+    
+    it 'can be deleted' do
+      expect { click_on 'delete_category' }.to change(Category, :count).by(-1)
+      expect(current_path).to eq(categories_path)
+    end
 
-      it 'can only be deleted by owner' do
-        logout(:user)
+    it 'can only be deleted by owner' do
+      category_to_delete.update!(user: user)
 
-        delete_user = FactoryBot.create(:user)
-        login_as(delete_user)
-
-        category_to_delete = FactoryBot.create(:category, user: delete_user)
-
-        visit edit_category_path(category_to_delete)
-
-        category_to_delete.update!(user: user)
-
-        expect { click_on 'delete_category' }.to change(Category, :count).by(0)
-        expect(current_path).to eq(root_path)
-      end
+      expect { click_on 'delete_category' }.to change(Category, :count).by(0)
+      expect(current_path).to eq(root_path)
     end
   end
 end

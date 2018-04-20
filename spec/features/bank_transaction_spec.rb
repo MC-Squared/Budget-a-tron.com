@@ -156,42 +156,36 @@ describe 'BankTransaction' do
     end
 
     describe 'delete' do
-      it 'can be deleted' do
-        logout(:user)
-
-        delete_user = FactoryBot.create(:user)
-        account = FactoryBot.create(:bank_account, user: delete_user)
-        login_as(delete_user, :scope => :user)
-
-        transaction_to_delete = BankTransaction.create(
+      let(:bank_transaction_to_delete) do
+        FactoryBot.create(:bank_transaction,
           payee: 'test payee',
-          amount: 123.99,
-          bank_account: account
+          amount: 123.99
         )
+      end
 
-        visit edit_bank_account_bank_transaction_path(account, transaction_to_delete)
+      let(:bank_account) do
+        bank_transaction_to_delete.bank_account
+      end
 
+      let(:delete_user) do
+        bank_account.user
+      end
+
+      before do
+        logout(:user)
+        login_as(delete_user)
+
+        visit edit_bank_account_bank_transaction_path(bank_account, bank_transaction_to_delete)
+      end
+
+      it 'can be deleted' do
         expect { click_on 'delete_bank_transaction' }.to change(BankTransaction, :count).by(-1)
-        expect(current_path).to eq(bank_account_bank_transactions_path(account))
+        expect(current_path).to eq(bank_account_bank_transactions_path(bank_account))
       end
 
       it 'can only be deleted by owner' do
-        logout(:user)
-
-        delete_user = FactoryBot.create(:user)
-        account = FactoryBot.create(:bank_account, user: delete_user)
-        login_as(delete_user)
-
-        transaction_to_delete = BankTransaction.create(
-          payee: 'test payee',
-          amount: 123.99,
-          bank_account: account
-        )
-
-        visit edit_bank_account_bank_transaction_path(account, transaction_to_delete)
-
         new_account = FactoryBot.create(:bank_account)
-        transaction_to_delete.update!(bank_account: new_account)
+        bank_transaction_to_delete.update!(bank_account: new_account)
 
         expect { click_on 'delete_bank_transaction' }.to change(BankTransaction, :count).by(0)
         expect(current_path).to eq(root_path)

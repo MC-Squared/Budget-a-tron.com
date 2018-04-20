@@ -147,40 +147,26 @@ describe 'BankAccount' do
     end
 
     describe 'delete' do
-      it 'can be deleted' do
+      let(:bank_account_to_delete) do
+        FactoryBot.create(:bank_account)
+      end
+
+      let(:delete_user) do
+        bank_account_to_delete.user
+      end
+
+      before do
         logout(:user)
-
-        delete_user = FactoryBot.create(:user)
         login_as(delete_user, :scope => :user)
-
-        bank_account_to_delete = BankAccount.create!(
-          name: 'name',
-          bank_number: 'asdf',
-          user: delete_user,
-          start_balance: 0
-        )
-
         visit edit_bank_account_path(bank_account_to_delete)
-
+      end
+      
+      it 'can be deleted' do
         expect { click_on 'delete_bank_account' }.to change(BankAccount, :count).by(-1)
         expect(current_path).to eq(bank_accounts_path)
       end
 
       it 'can only be deleted by owner' do
-        logout(:user)
-
-        delete_user = FactoryBot.create(:user)
-        login_as(delete_user)
-
-        bank_account_to_delete = BankAccount.create!(
-          name: 'name',
-          bank_number: 'asdf',
-          user: delete_user,
-          start_balance: 0
-        )
-
-        visit edit_bank_account_path(bank_account_to_delete)
-
         bank_account_to_delete.update!(user: user)
 
         expect { click_on 'delete_bank_account' }.to change(BankAccount, :count).by(0)

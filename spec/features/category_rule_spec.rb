@@ -139,28 +139,27 @@ describe 'category' do
   end
 
   describe 'delete' do
-    it 'can be deleted' do
-      logout(:user)
+    let(:category_rule_to_delete) do
+      FactoryBot.create(:category_rule)
+    end
 
-      category_rule_to_delete = FactoryBot.create(:category_rule)
-      delete_user = category_rule_to_delete.user
+    let(:delete_user) do
+      category_rule_to_delete.user
+    end
+
+    before do
+      logout(:user)
       login_as(delete_user, :scope => :user)
 
       visit edit_category_rule_path(category_rule_to_delete)
-
+    end
+    
+    it 'can be deleted' do
       expect { click_on 'delete_category_rule' }.to change(CategoryRule, :count).by(-1)
       expect(current_path).to eq(category_rules_path)
     end
 
     it 'can only be deleted by owner' do
-      logout(:user)
-
-      category_rule_to_delete = FactoryBot.create(:category_rule)
-      delete_user = category_rule_to_delete.user
-      login_as(delete_user, :scope => :user)
-
-      visit edit_category_rule_path(category_rule_to_delete)
-
       other_category = FactoryBot.create(:category)
 
       category_rule_to_delete.update!(category: category)
