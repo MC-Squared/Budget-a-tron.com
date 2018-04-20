@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_19_091356) do
+ActiveRecord::Schema.define(version: 2018_04_20_021258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,18 @@ ActiveRecord::Schema.define(version: 2018_04_19_091356) do
     t.index ["user_id"], name: "index_categories_on_user_id"
   end
 
+  create_table "category_rules", force: :cascade do |t|
+    t.bigint "category_id"
+    t.string "match_status"
+    t.string "match_payee"
+    t.string "match_memo"
+    t.string "match_address"
+    t.string "match_category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_category_rules_on_category_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -77,4 +89,5 @@ ActiveRecord::Schema.define(version: 2018_04_19_091356) do
   add_foreign_key "bank_accounts", "users"
   add_foreign_key "bank_transactions", "bank_accounts"
   add_foreign_key "categories", "users"
+  add_foreign_key "category_rules", "categories"
 end

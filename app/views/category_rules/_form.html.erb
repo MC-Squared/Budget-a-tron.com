@@ -1,0 +1,39 @@
+<%= form_with model: category_rule do |form| %>
+  <% if category_rule.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(category_rule.errors.count, "error") %> prohibited this category_rule from being saved:</h2>
+      <ul>
+        <% category_rule.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= form.label :category %>
+    <%= collection_select(:category_rule, :category_id, Category.all, :id, :name) %>
+  </div>
+  <div class="field">
+    <%= form.label :match_status %>
+    <%= form.text_field :match_status %>
+  </div>
+  <div class="field">
+    <%= form.label :match_payee %>
+    <%= form.text_field :match_payee %>
+  </div>
+  <div class="field">
+    <%= form.label :match_memo %>
+    <%= form.text_field :match_memo %>
+  </div>
+  <div class="field">
+    <%= form.label :match_address %>
+    <%= form.text_field :match_address %>
+  </div>
+  <div class="field">
+    <%= form.label :match_category %>
+    <%= form.text_field :match_category %>
+  </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
