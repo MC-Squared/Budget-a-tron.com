@@ -4,10 +4,6 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
   before_action :authorize_category, only: [:show, :edit, :update, :destroy]
 
-  def index
-    @categories = policy_scope(Category)
-  end
-
   def show
   end
 
@@ -22,7 +18,7 @@ class CategoriesController < ApplicationController
     @category = current_user.categories.build(category_params)
 
     if @category.save
-       redirect_to categories_path, notice: 'Category was successfully created.'
+       redirect_to @category, notice: 'Category was successfully created.'
     else
       render :new
     end
@@ -30,7 +26,7 @@ class CategoriesController < ApplicationController
 
   def update
     if @category.update(category_params)
-      redirect_to categories_path, notice: 'Category was successfully updated.'
+      redirect_to @category, notice: 'Category was successfully updated.'
     else
       render :edit
     end
@@ -38,7 +34,7 @@ class CategoriesController < ApplicationController
 
   def destroy
     @category.destroy
-    redirect_to categories_url, notice: 'Category was successfully destroyed.'
+    redirect_to bank_accounts_path, notice: 'Category was successfully destroyed.'
   end
 
   private

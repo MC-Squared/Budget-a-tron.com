@@ -32,10 +32,8 @@ describe 'BankAccount' do
       end
 
       it 'has a list of bank accounts' do
-        bank_account = FactoryBot.create(:bank_account)
-        bank_account.update!(user: user)
-        second_account = FactoryBot.create(:second_bank_account)
-        second_account.update!(user: user)
+        bank_account = FactoryBot.create(:bank_account, user: user)
+        second_account = FactoryBot.create(:second_bank_account, user: user)
 
         visit bank_accounts_path
         expect(page).to have_text bank_account.name
@@ -60,9 +58,29 @@ describe 'BankAccount' do
         expect(current_path).to eq(new_bank_account_path)
       end
 
-      it 'has a link to the category index page' do
-        click_link('categories_index')
-        expect(current_path).to eq(categories_path)
+      it 'has a list of categories' do
+        category1 = FactoryBot.create(:category, name: 'testing', user: user)
+        category2 = FactoryBot.create(:category, name: 'asdf', user: user)
+
+        visit bank_accounts_path
+        expect(page).to have_text category1.name
+        expect(page).to have_text category2.name
+      end
+
+      it 'only shows categories for the signed in user' do
+        category = FactoryBot.create(:category, user: user)
+        other_user = FactoryBot.create(:user)
+
+        other_category = Category.create(name: 'dont see me', user: other_user)
+
+        visit bank_accounts_path
+        expect(page).to have_content(category.name)
+        expect(page).to_not have_content(other_category.name)
+      end
+
+      it 'has a link to the new page' do
+        click_link('new_category')
+        expect(current_path).to eq(new_category_path)
       end
     end
 
@@ -160,7 +178,7 @@ describe 'BankAccount' do
         login_as(delete_user, :scope => :user)
         visit edit_bank_account_path(bank_account_to_delete)
       end
-      
+
       it 'can be deleted' do
         expect { click_on 'delete_bank_account' }.to change(BankAccount, :count).by(-1)
         expect(current_path).to eq(bank_accounts_path)

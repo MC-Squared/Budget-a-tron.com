@@ -36,6 +36,22 @@
         </a>
       </li>
     </ul>
+    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+      <span>Categories</span>
+      <%= link_to new_category_path, class: 'd-flex align-items-center text-muted', id: 'new_category' do %>
+        <span data-feather="plus-circle"></span>
+      <% end %>
+    </h6>
+    <ul class="nav flex-column">
+      <% get_sidebar_categories.each do |c| %>
+        <li class="nav-item">
+          <%= link_to category_path(c), class: "nav-link #{active? category_path(c)}" do %>
+            <span data-feather="layers"></span>
+            <%= c.name %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
   </div>
 </nav>
 <!-- Icons -->

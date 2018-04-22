@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :category_rules
-  resources :categories
+  resources :categories, except: [:index]
   resources :bank_accounts do
     resources :bank_transactions
     post 'imports/create'

@@ -11,50 +11,8 @@ describe 'category' do
 
   describe 'authorization' do
     it 'does not allow access without being signed in' do
-      visit categories_path
+      visit category_path(category)
       expect(current_path).to eq(new_user_session_path)
-    end
-  end
-
-  describe 'navigation' do
-    describe 'index' do
-      before do
-        login_as category.user
-        visit categories_path
-      end
-
-      it 'can be reached successfully' do
-        expect(current_path).to eq(categories_path)
-      end
-
-      it 'has a tile of Categories' do
-        expect(page).to have_content(/Categories/)
-      end
-
-      it 'has a list of categories' do
-        cat1 = FactoryBot.create(:category, user: user)
-        cat2 = FactoryBot.create(:category, user: user)
-
-        visit categories_path
-        expect(page).to have_text cat1.name
-        expect(page).to have_text cat2.name
-      end
-
-      it 'only shows categories for the signed in user' do
-        user = category.user
-        other_user = FactoryBot.create(:user)
-
-        other_category = Category.create(name: 'dont see me', user: other_user)
-
-        visit categories_path
-        expect(page).to have_content(category.name)
-        expect(page).to_not have_content(other_category.name)
-      end
-
-      it 'has a link to the new page' do
-        click_link('new_category')
-        expect(current_path).to eq(new_category_path)
-      end
     end
   end
 
@@ -121,7 +79,7 @@ describe 'category' do
       fill_in 'category[name]', with: 'Test Category Name'
       click_on 'Save'
 
-      expect(current_path).to eq(categories_path)
+      expect(Category.last.name).to eq('Test Category Name')
       expect(page).to have_content(/Test Category Name/)
     end
 
@@ -150,10 +108,10 @@ describe 'category' do
 
       visit edit_category_path(category_to_delete)
     end
-    
+
     it 'can be deleted' do
       expect { click_on 'delete_category' }.to change(Category, :count).by(-1)
-      expect(current_path).to eq(categories_path)
+      expect(current_path).to eq(bank_accounts_path)
     end
 
     it 'can only be deleted by owner' do

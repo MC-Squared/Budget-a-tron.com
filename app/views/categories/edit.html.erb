@@ -1,5 +1,5 @@
 <h1>Editing Category</h1>
 <%= render 'form', category: @category %>
 <%= link_to 'Show', @category %> |
-<%= link_to 'Back', categories_path %>
+
 <td><%= link_to 'Destroy', @category, method: :delete, data: { confirm: 'Are you sure?' }, id: 'delete_category' %></td>
