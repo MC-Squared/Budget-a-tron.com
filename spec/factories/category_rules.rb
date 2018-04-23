@@ -5,6 +5,6 @@ FactoryBot.define do
     match_payee "MyString"
     match_memo "MyString"
     match_address "MyString"
-    match_category "MyString"
+    match_bank_category "MyString"
   end
 end

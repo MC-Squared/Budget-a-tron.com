@@ -17,8 +17,11 @@ RSpec.describe CategoryRule, type: :model do
 
     let(:trans) do
       BankTransaction.create(bank_account: bank_account,
+        status: 'test status',
         payee: 'test payee',
         memo: 'test memo',
+        address: 'test address',
+        bank_category: 'test bank_category',
         amount: 1234)
     end
 
@@ -43,6 +46,31 @@ RSpec.describe CategoryRule, type: :model do
                                       match_memo: 'qwer')
 
       expect(user.category_rules.find_category_for_transaction(trans)).to eq(nil)
+    end
+
+    def test_match_by(match_field, value)
+      rule = CategoryRule.create(category: category1, match_field => value)
+      expect(user.category_rules.find_category_for_transaction(trans)).to eq(category1)
+    end
+
+    it 'matches by status' do
+      test_match_by(:match_status, 'status')
+    end
+
+    it 'matches by payee' do
+      test_match_by(:match_payee, 'payee')
+    end
+
+    it 'matches by memo' do
+      test_match_by(:match_memo, 'memo')
+    end
+
+    it 'matches by address' do
+      test_match_by(:match_address, 'address')
+    end
+
+    it 'matches by bank_category' do
+      test_match_by(:match_bank_category, 'bank_category')
     end
   end
 end

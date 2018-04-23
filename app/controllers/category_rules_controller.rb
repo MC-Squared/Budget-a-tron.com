@@ -53,7 +53,7 @@ class CategoryRulesController < ApplicationController
                                       :match_payee,
                                       :match_memo,
                                       :match_address,
-                                      :match_category
+                                      :match_bank_category
                                     )
   end
 end

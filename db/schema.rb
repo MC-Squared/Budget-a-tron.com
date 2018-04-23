@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_20_105606) do
+ActiveRecord::Schema.define(version: 2018_04_23_054858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 2018_04_20_105606) do
     t.string "match_payee"
     t.string "match_memo"
     t.string "match_address"
-    t.string "match_category"
+    t.string "match_bank_category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_category_rules_on_category_id"
