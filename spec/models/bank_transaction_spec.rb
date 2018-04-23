@@ -50,8 +50,14 @@ RSpec.describe BankTransaction, type: :model do
     end
   end
 
-  describe "apply_categories_from_rules" do
+  describe "update" do
     it "applies the correct categories" do
+      cat1 = FactoryBot.create(:category, user: user)
+      cat2 = FactoryBot.create(:category, user: user)
+
+      CategoryRule.create(category: cat1, match_payee: 'match1')
+      CategoryRule.create(category: cat2, match_memo: 'match2')
+
       BankTransaction.create(
         date: Date.today,
         bank_account: bank_account,
@@ -71,13 +77,6 @@ RSpec.describe BankTransaction, type: :model do
         payee: 'no match for me'
       )
 
-      cat1 = FactoryBot.create(:category, user: user)
-      cat2 = FactoryBot.create(:category, user: user)
-
-      CategoryRule.create(category: cat1, match_payee: 'match1')
-      CategoryRule.create(category: cat2, match_memo: 'match2')
-
-      user.bank_transactions.apply_categories_from_rules(user.category_rules)
       expect(BankTransaction.first.category).to eq(cat1)
       expect(BankTransaction.second.category).to eq(cat2)
       expect(BankTransaction.last.category).to eq(nil)
@@ -87,6 +86,8 @@ RSpec.describe BankTransaction, type: :model do
       cat1 = FactoryBot.create(:category, user: user)
       cat2 = FactoryBot.create(:category, user: user)
 
+      CategoryRule.create(category: cat2, match_payee: 'match')
+
       BankTransaction.create(
         date: Date.today,
         bank_account: bank_account,
@@ -95,9 +96,6 @@ RSpec.describe BankTransaction, type: :model do
         category: cat1
       )
 
-      CategoryRule.create(category: cat2, match_payee: 'match')
-
-      user.bank_transactions.apply_categories_from_rules(user.category_rules)
       expect(BankTransaction.first.category).to eq(cat1)
     end
   end

@@ -5,13 +5,18 @@ class BankTransaction < ApplicationRecord
 
   validates_presence_of :amount
 
+  after_commit :update_transaction_category
+
   scope :sum_by_day, -> { group(:date).sum(:amount) }
   scope :sum_by_category, -> { group(:category).sum(:amount) }
 
-  def self.apply_categories_from_rules(category_rules)
-    self.where(category: nil).each do |t|
-      category = category_rules.find_category_for_transaction(t)
-      t.update(category: category) unless category.nil?
+  private
+
+    # TODO: move category assignment to a background job
+    def update_transaction_category
+      unless attribute_present?('category_id')
+        cat = CategoryRule.find_category_for_transaction(self)
+        update(category: cat) unless self.category == cat
+      end
     end
-  end
 end
