@@ -15,47 +15,8 @@ describe 'category' do
 
   describe 'authorization' do
     it 'does not allow access without being signed in' do
-      visit category_rules_path
+      visit edit_category_path(category)
       expect(current_path).to eq(new_user_session_path)
-    end
-  end
-
-  describe 'navigation' do
-    describe 'index' do
-      before do
-        login_as user
-        visit category_rules_path
-      end
-
-      it 'can be reached successfully' do
-        expect(current_path).to eq(category_rules_path)
-      end
-
-      it 'has a tile of Categories' do
-        expect(page).to have_content(/Category Rules/)
-      end
-
-      it 'has a list of category rules' do
-        rule1 = FactoryBot.create(:category_rule, match_payee: 'payee 1', category: category)
-        rule2 = FactoryBot.create(:category_rule, match_memo: 'test memo', category: category)
-
-        visit category_rules_path
-        expect(page).to have_text rule1.match_payee
-        expect(page).to have_text rule2.match_memo
-      end
-
-      it 'only shows category rules for the signed in user' do
-        other_category_rule = FactoryBot.create(:category_rule, match_payee: 'dont see me')
-
-        visit category_rules_path
-        expect(page).to have_content(category_rule.match_payee)
-        expect(page).to_not have_content(other_category_rule.match_payee)
-      end
-
-      it 'has a link to the new page' do
-        click_link('new_category_rule')
-        expect(current_path).to eq(new_category_rule_path)
-      end
     end
   end
 
@@ -124,7 +85,7 @@ describe 'category' do
       fill_in 'category_rule[match_payee]', with: 'Test Payee Name'
       click_on 'Update Category rule'
 
-      expect(current_path).to eq(category_rules_path)
+      expect(current_path).to eq(category_path(category_rule.category))
       expect(page).to have_content(/Test Payee Name/)
     end
 
@@ -153,10 +114,10 @@ describe 'category' do
 
       visit edit_category_rule_path(category_rule_to_delete)
     end
-    
+
     it 'can be deleted' do
       expect { click_on 'delete_category_rule' }.to change(CategoryRule, :count).by(-1)
-      expect(current_path).to eq(category_rules_path)
+      expect(current_path).to eq(category_path(category_rule_to_delete.category))
     end
 
     it 'can only be deleted by owner' do

@@ -17,8 +17,13 @@ describe 'category' do
   end
 
   describe 'show' do
+    let(:category_rule) do
+      FactoryBot.create(:category_rule, category: category, match_payee: 'find this payee')
+    end
+
     before do
       login_as category.user
+      category_rule
       visit category_path(category)
     end
 
@@ -36,8 +41,38 @@ describe 'category' do
       login_as(FactoryBot.create(:second_user))
 
       visit category_path(category)
-
       expect(current_path).to eq(root_path)
+    end
+
+    it 'has a list of category rules' do
+      category_rule2 = FactoryBot.create(:category_rule,
+                                          category: category,
+                                          match_address: 'see this rule')
+
+      visit category_path(category)
+      expect(page).to have_text category_rule.match_payee
+      expect(page).to have_text category_rule.match_address
+    end
+
+    it 'only shows category rules for the current category' do
+      other_user_category = FactoryBot.create(:category)
+      other_category_rule = FactoryBot.create(:category_rule,
+                                              category: other_user_category,
+                                              match_address: 'see this rule')
+
+      visit category_path(category)
+      expect(page).to have_text(category_rule.match_payee)
+      expect(page).to_not have_text(other_category_rule.match_address)
+    end
+
+    it 'has a link to the new category rule page' do
+      click_link('new_category_rule')
+      expect(current_path).to eq(new_category_rule_path)
+    end
+
+    it 'has a link to the edit category rule page' do
+      click_link("edit_category_rule#{category_rule.id}")
+      expect(current_path).to eq(edit_category_rule_path(category_rule))
     end
   end
 

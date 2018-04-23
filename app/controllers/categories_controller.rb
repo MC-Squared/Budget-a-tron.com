@@ -1,10 +1,12 @@
 class CategoriesController < ApplicationController
   layout 'dashboard'
   before_action :authenticate_user!
-  before_action :set_category, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_category, only: [:edit, :update, :destroy]
+  before_action :authorize_category, only: [:edit, :update, :destroy]
 
   def show
+    @category = Category.includes(:category_rules).find(params[:id])
+    authorize_category
   end
 
   def new

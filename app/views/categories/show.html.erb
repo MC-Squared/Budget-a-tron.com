@@ -1,2 +1,51 @@
-<%= @category.inspect %>
-<%= link_to 'Edit', edit_category_path(@category), id: 'edit_category' %>
+<div class="d-flex flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+  <h1><%= @category.name %><small class='category-edit'>(<%= link_to 'Edit', edit_category_path(@category), id: 'edit_category' %>)</small></h1>
+  <div class="ml-auto btn-toolbar mb-2 mb-md-0">
+    <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+      <span data-feather="calendar"></span>
+      This week
+    </button>
+  </div>
+</div>
+<%#= area_chart_helper @bank_account_sums, legend: false %>
+<hr>
+<h2>
+  Category Rules
+  <%= link_to new_category_rule_path, class: 'text-muted', id: 'new_category_rule' do %>
+    <span class="align-middle" data-feather="plus-circle"></span>
+  <% end %>
+</h2>
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+      <th>Status</th>
+      <th>Payee</th>
+      <th>Memo</th>
+      <th>Address</th>
+      <th>Bank Category</th>
+      <th></th>
+    </thead>
+    <tbody>
+      <% @category.category_rules.each do |category_rule| %>
+        <tr>
+          <td><%= category_rule.match_status%></td>
+          <td><%= category_rule.match_payee%></td>
+          <td><%= category_rule.match_memo%></td>
+          <td><%= category_rule.match_address%></td>
+          <td><%= category_rule.match_category%></td>
+          <td>
+            <%= link_to edit_category_rule_path(category_rule), id: "edit_category_rule#{category_rule.id}" do %>
+              <span class='category-rule-glyph' data-feather='edit'></span>
+            <% end %>
+            <%= link_to category_rule_path(category_rule),
+                  id: "delete_category_rule#{category_rule.id}",
+                  method: :delete,
+                  data: { confirm: 'Are you sure you want to delete this category rule?'} do %>
+              <span class='category-rule-glyph' data-feather='trash'></span>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -4,10 +4,6 @@ class CategoryRulesController < ApplicationController
   before_action :set_category_rule, only: [:show, :edit, :update, :destroy]
   before_action :authorize_category_rule, only: [:show, :edit, :update, :destroy]
 
-  def index
-    @category_rules = policy_scope(CategoryRule)
-  end
-
   def show
   end
 
@@ -22,7 +18,7 @@ class CategoryRulesController < ApplicationController
     @category_rule = current_user.category_rules.build(category_rule_params)
 
     if @category_rule.save
-       redirect_to category_rules_path, notice: 'Category rule was successfully created.'
+       redirect_to category_path(@category_rule.category), notice: 'Category rule was successfully created.'
     else
       render :new
     end
@@ -30,15 +26,15 @@ class CategoryRulesController < ApplicationController
 
   def update
     if @category_rule.update(category_rule_params)
-      redirect_to category_rules_path, notice: 'Category rule was successfully updated.'
+      redirect_to category_path(@category_rule.category), notice: 'Category rule was successfully updated.'
     else
       render :edit
     end
   end
-  
+
   def destroy
     @category_rule.destroy
-    redirect_to category_rules_path, notice: 'Category rule was successfully destroyed.'
+    redirect_to category_path(@category_rule.category), notice: 'Category rule was successfully destroyed.'
   end
 
   private
