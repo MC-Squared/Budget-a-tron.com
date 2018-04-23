@@ -3,7 +3,7 @@
               name: @category.name,
               edit_path: edit_category_path(@category),
               edit_id: 'edit_category' }%>
-<%#= area_chart_helper @bank_account_sums, legend: false %>
+<%= line_chart_helper @bank_transaction_sums, legend: false %>
 <hr>
 <h2>
   Category Rules

@@ -10,23 +10,20 @@ module BankAccountsHelper
   def area_chart_helper(values, options={})
     values = [values] unless values.is_a? Array
 
-    defaults = {
-      points: false,
-      stacked: true,
-      prefix: '$',
-      thousands: ',',
-      animation: true,
-      library:
-      {
-        animation: {
-          easing: 'easeOutQuart'
-        },
-      }
-    }
-
+    defaults = default_chart_options
+    defaults[:stacked] = true
     options = defaults.merge(options)
 
     area_chart values, options
+  end
+
+  def line_chart_helper(values, options={})
+    values = [values] unless values.is_a? Array
+    defaults = default_chart_options
+    defaults[:points] = true
+    options = defaults.merge(options)
+
+    line_chart values, options
   end
 
   def active? path
@@ -41,4 +38,21 @@ module BankAccountsHelper
     return link_to category.name, category if category
     '---'
   end
+
+  private
+
+    def default_chart_options
+      {
+        points: false,
+        prefix: '$',
+        thousands: ',',
+        animation: true,
+        library:
+        {
+          animation: {
+            easing: 'easeOutQuart'
+          },
+        }
+      }
+    end
 end
