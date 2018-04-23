@@ -5,6 +5,33 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.create!(email: 'test@user.com', password: 'asdfasdf', password_confirmation: 'asdfasdf', confirmed_at: Time.zone.now)
+User.create!(email: 'test@user.com',
+              password: 'asdfasdf',
+              password_confirmation: 'asdfasdf',
+              confirmed_at: Time.zone.now)
 
-BankAccount.create!(user: User.first, name: 'test account', bank_number: '1234')
+chq = BankAccount.create!(user: User.first,
+                    name: 'Cheque',
+                    bank_number: '1234')
+
+sav = BankAccount.create!(user: User.first,
+                    name: 'Savings',
+                    bank_number: '1234')
+
+((Date.today - 6.months)..Date.today).each do |date|
+  BankTransaction.create!(
+      date: date,
+      bank_account: chq,
+      payee: Faker::Science.scientist,
+      amount: date.tuesday? ? 1000 : -rand(300)
+  )
+end
+
+((Date.today - 6.months)..Date.today).step(7).each do |date|
+  BankTransaction.create!(
+      date: date,
+      bank_account: sav,
+      payee: Faker::Science.scientist,
+      amount: 100
+  )
+end
