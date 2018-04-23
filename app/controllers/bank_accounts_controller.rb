@@ -18,6 +18,15 @@ class BankAccountsController < ApplicationController
           dates: dates),
       }
     end
+
+    @bank_transactions_by_category = policy_scope(BankTransaction)
+      .sum_by_category
+      .map { |cat_sum|
+        [
+          cat_sum[0].try(:name) || 'No Category',
+          cat_sum[1]
+        ]
+      }
   end
 
   def show
