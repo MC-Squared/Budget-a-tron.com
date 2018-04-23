@@ -37,4 +37,6 @@ gem 'pundit', '~> 1.1'
 gem 'qif', '~> 1.2'
 gem 'bootstrap', '~> 4.0'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
-gem 'chartkick', '~> 2.3', '>= 2.3.4'
+#gem 'chartkick', '~> 2.3', '>= 2.3.4'
+# TODO: revert back to upstream chartkick when support for Turbolinks is added
+gem "chartkick", github: "thijsre/chartkick", branch: "master"
