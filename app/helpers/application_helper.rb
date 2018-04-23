@@ -13,8 +13,4 @@ module ApplicationHelper
   def footer_brand
     brand_helper 'logo-black.svg'
   end
-
-  def currency_color_class(amount)
-    amount < 0 ? 'currency-negative' : 'currency-positive'
-  end
 end

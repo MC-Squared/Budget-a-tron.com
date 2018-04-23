@@ -1,0 +1,34 @@
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+      <th>Status</th>
+      <th>Payee</th>
+      <th>Memo</th>
+      <th>Address</th>
+      <th>Bank Category</th>
+      <th></th>
+    </thead>
+    <tbody>
+      <% category_rules.each do |category_rule| %>
+        <tr>
+          <td><%= category_rule.match_status%></td>
+          <td><%= category_rule.match_payee%></td>
+          <td><%= category_rule.match_memo%></td>
+          <td><%= category_rule.match_address%></td>
+          <td><%= category_rule.match_category%></td>
+          <td>
+            <%= link_to edit_category_rule_path(category_rule), id: "edit_category_rule#{category_rule.id}" do %>
+              <span class='category-rule-glyph' data-feather='edit'></span>
+            <% end %>
+            <%= link_to category_rule_path(category_rule),
+                  id: "delete_category_rule#{category_rule.id}",
+                  method: :delete,
+                  data: { confirm: 'Are you sure you want to delete this category rule?'} do %>
+              <span class='category-rule-glyph' data-feather='trash'></span>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

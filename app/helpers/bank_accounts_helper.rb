@@ -32,4 +32,13 @@ module BankAccountsHelper
   def active? path
     "active" if current_page? path
   end
+
+  def currency_color_class(amount)
+    amount < 0 ? 'currency-negative' : 'currency-positive'
+  end
+
+  def category_link_helper(category)
+    return link_to category.name, category if category
+    '---'
+  end
 end
