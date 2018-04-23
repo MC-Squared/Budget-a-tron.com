@@ -1,10 +1,10 @@
 module BankAccountsHelper
   def get_sidebar_bank_accounts
-    policy_scope(BankAccount.all).order(name: :desc)
+    policy_scope(BankAccount.all).order(name: :asc)
   end
 
   def get_sidebar_categories
-    policy_scope(Category.all).order(name: :desc)
+    policy_scope(Category.all).order(name: :asc)
   end
 
   def area_chart_helper(values, options={})
