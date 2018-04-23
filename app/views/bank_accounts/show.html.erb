@@ -16,4 +16,8 @@
   </div>
 <% end %>
 <%= render partial: 'shared/dashboard_transactions',
-           locals: { bank_transactions: @bank_account.bank_transactions} %>
+           locals: {
+             bank_transactions: @bank_account.bank_transactions,
+             show_category: true
+            }
+%>

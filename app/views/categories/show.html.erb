@@ -16,4 +16,8 @@
 <hr>
 <h2 class='pt-5'>Transactions</h2>
 <%= render partial: 'shared/dashboard_transactions',
-           locals: { bank_transactions: @category.bank_transactions} %>
+           locals: {
+             bank_transactions: @category.bank_transactions,
+             show_category: false
+           }
+%>
