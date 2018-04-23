@@ -104,8 +104,19 @@ describe 'BankAccount' do
         login_as(FactoryBot.create(:second_user))
 
         visit bank_account_path(account)
-
         expect(current_path).to eq(root_path)
+      end
+
+      it 'has a list of bank transactions' do
+        trans1 = FactoryBot.create(:bank_transaction,
+                                    bank_account: account,
+                                    payee: 'see this payee');
+        trans2 = FactoryBot.create(:bank_transaction,
+                                    bank_account: account,
+                                    memo: 'see this memo');
+        visit bank_account_path(account)
+        expect(page).to have_text(trans1.payee)
+        expect(page).to have_text(trans1.memo)
       end
     end
 

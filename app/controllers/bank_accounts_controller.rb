@@ -1,8 +1,8 @@
 class BankAccountsController < ApplicationController
   layout 'dashboard'
   before_action :authenticate_user!
-  before_action :set_bank_account, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_bank_account, only: [:show, :edit, :update, :destroy]
+  before_action :set_bank_account, only: [:edit, :update, :destroy]
+  before_action :authorize_bank_account, only: [:edit, :update, :destroy]
 
   def index
     bank_accounts = policy_scope(BankAccount).includes(:bank_transactions)
@@ -17,6 +17,9 @@ class BankAccountsController < ApplicationController
   end
 
   def show
+    @bank_account = BankAccount.includes(:bank_transactions).find(params[:id])
+    authorize @bank_account
+    
     @bank_account_sums = {
       name: @bank_account.name,
       data: calculate_cumulative_sums_by_day(@bank_account),

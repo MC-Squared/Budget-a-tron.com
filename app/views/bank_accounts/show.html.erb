@@ -1,5 +1,9 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-  <h1><%= @bank_account.name %></h1>
+  <h1><%= @bank_account.name %>
+    <small class='category-edit'>
+      (<%= link_to 'Edit', edit_bank_account_path(@bank_account), id: 'edit_bank_account' %>)
+    </small>
+  </h1>
   <div class="btn-toolbar mb-2 mb-md-0">
     <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
       <span data-feather="calendar"></span>
@@ -8,10 +12,43 @@
   </div>
 </div>
 <%= area_chart_helper @bank_account_sums, legend: false %>
-<%= link_to 'Edit', edit_bank_account_path(@bank_account), id: 'edit_bank_account' %>
+<hr>
+<h2 class='pt-5'>Transactions</h2>
+<!-- TODO: make uploading nice (probably circle-plus link to ajax uploader) -->
 <%= form_tag(bank_account_imports_create_path(@bank_account), multipart: true) do %>
   <div class="form-group">
     <%= file_field_tag :file %>
     <%= submit_tag 'Import', class: 'btn-primary'  %>
   </div>
 <% end %>
+<!-- TODO: pagination -->
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+      <th>Category</th>
+      <th>Status</th>
+      <th>Amount</th>
+      <th>Payee</th>
+      <th>Memo</th>
+      <th>Address</th>
+      <th>Bank Category</th>
+      <th></th>
+    </thead>
+    <tbody>
+      <% @bank_account.bank_transactions.each do |trans| %>
+        <tr>
+          <td><%= trans.category.try(:name) %></td>
+          <td><%= trans.status %></td>
+          <td class="<%= currency_color_class trans.amount %>">
+            <%= number_to_currency(trans.amount) %>
+          </td>
+          <td><%= trans.payee %></td>
+          <td><%= trans.memo %></td>
+          <td><%= trans.address %></td>
+          <td><%= trans.category %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<hr>
