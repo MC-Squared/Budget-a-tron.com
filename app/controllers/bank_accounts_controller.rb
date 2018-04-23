@@ -1,4 +1,5 @@
 class BankAccountsController < ApplicationController
+  include BankTransactionCumulativeSums
   layout 'dashboard'
   before_action :authenticate_user!
   before_action :set_bank_account, only: [:edit, :update, :destroy]
@@ -11,7 +12,10 @@ class BankAccountsController < ApplicationController
     bank_accounts.each do |ba|
       @bank_account_sums << {
         name: ba.name,
-        data: calculate_cumulative_sums_by_day(ba, dates),
+        data: calculate_cumulative_sums_by_day(
+          bank_transactions: ba.bank_transactions,
+          start_balance: ba.start_balance,
+          dates: dates),
       }
     end
   end
@@ -19,10 +23,12 @@ class BankAccountsController < ApplicationController
   def show
     @bank_account = BankAccount.includes(:bank_transactions).find(params[:id])
     authorize @bank_account
-    
+
     @bank_account_sums = {
       name: @bank_account.name,
-      data: calculate_cumulative_sums_by_day(@bank_account),
+      data: calculate_cumulative_sums_by_day(
+        bank_transactions: @bank_account.bank_transactions,
+        start_balance: @bank_account.start_balance),
     }
   end
 
@@ -68,23 +74,5 @@ class BankAccountsController < ApplicationController
 
   def bank_account_params
     params.require(:bank_account).permit(:user_id, :name, :bank_number, :start_balance)
-  end
-
-  def calculate_cumulative_sums_by_day(bank_account, dates=[])
-    daily_balances = bank_account.bank_transactions.sum_by_day
-    dates = daily_balances.keys.sort if dates.empty?
-
-    unless dates.empty?
-      daily_balances[dates.first - 1.day] = bank_account.start_balance
-    end
-
-    running_total = bank_account.start_balance
-    dates.each do |d|
-      daily_balances[d] ||= 0
-      daily_balances[d] += running_total
-      running_total = daily_balances[d]
-    end
-
-    daily_balances
   end
 end
