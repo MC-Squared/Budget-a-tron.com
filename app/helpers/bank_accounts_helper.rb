@@ -26,6 +26,15 @@ module BankAccountsHelper
     line_chart values, options
   end
 
+  def donut_chart_helper(values, options={})
+    values = [values] unless values.is_a? Array
+    defaults = default_chart_options
+    defaults[:donut] = true
+    options = defaults.merge(options)
+
+    pie_chart values, options
+  end
+
   def active? path
     "active" if current_page? path
   end
@@ -43,10 +52,12 @@ module BankAccountsHelper
 
     def default_chart_options
       {
+        defer: true,
         points: false,
         prefix: '$',
         thousands: ',',
         animation: true,
+        messages: {empty: "No data"},
         library:
         {
           animation: {

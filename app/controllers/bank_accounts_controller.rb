@@ -21,7 +21,7 @@ class BankAccountsController < ApplicationController
   end
 
   def show
-    @bank_account = BankAccount.includes(:bank_transactions).find(params[:id])
+    @bank_account = BankAccount.includes(:bank_transactions, :categories).find(params[:id])
     authorize @bank_account
 
     @bank_account_sums = {
@@ -30,6 +30,15 @@ class BankAccountsController < ApplicationController
         bank_transactions: @bank_account.bank_transactions,
         start_balance: @bank_account.start_balance),
     }
+
+    @bank_transactions_by_category = @bank_account.bank_transactions
+      .sum_by_category
+      .map { |cat_sum|
+        [
+          cat_sum[0].try(:name) || 'No Category',
+          cat_sum[1]
+        ]
+      }
   end
 
   def new
