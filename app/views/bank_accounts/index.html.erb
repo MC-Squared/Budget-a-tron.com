@@ -15,8 +15,5 @@
 <h2>Net Worth</h2>
 <%= area_chart_helper @bank_account_sums %>
 <hr>
-<h2>Incoming vs Outgoing</h2>
-<%= donut_chart_helper @bank_transaction_directionals %>
-<hr>
-<h2>Category Breakdown</h2>
-<%= column_chart @bank_transactions_by_category %>
+<%= render 'shared/dashboard_chart_incoming_outgoing' %>
+<%= render 'shared/dashboard_chart_category_breakdown' %>
