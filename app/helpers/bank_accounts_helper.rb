@@ -35,6 +35,14 @@ module BankAccountsHelper
     pie_chart values, options
   end
 
+  def column_chart_helper(values, options={})
+    values = [values] unless values.is_a? Array
+    defaults = default_chart_options
+    options = defaults.merge(options)
+
+    column_chart values, options
+  end
+
   def active? path
     "active" if current_page? path
   end
