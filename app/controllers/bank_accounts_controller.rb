@@ -1,5 +1,7 @@
 class BankAccountsController < ApplicationController
-  include BankTransactionCumulativeSums
+  include BankTransactionsCumulativeSums
+  include BankTransactionsByCategory
+  include BankTransactionsDirectionals
   layout 'dashboard'
   before_action :authenticate_user!
   before_action :set_bank_account, only: [:edit, :update, :destroy]
@@ -19,14 +21,13 @@ class BankAccountsController < ApplicationController
       }
     end
 
-    @bank_transactions_by_category = policy_scope(BankTransaction)
-      .sum_by_category
-      .map { |cat_sum|
-        [
-          cat_sum[0].try(:name) || 'No Category',
-          cat_sum[1]
-        ]
-      }
+    @bank_transaction_directionals = sum_by_direction(
+      bank_transactions: policy_scope(BankTransaction)
+    )
+
+    @bank_transactions_by_category = sum_by_category(
+      bank_transactions: policy_scope(BankTransaction)
+    )
   end
 
   def show
@@ -40,14 +41,13 @@ class BankAccountsController < ApplicationController
         start_balance: @bank_account.start_balance),
     }
 
-    @bank_transactions_by_category = @bank_account.bank_transactions
-      .sum_by_category
-      .map { |cat_sum|
-        [
-          cat_sum[0].try(:name) || 'No Category',
-          cat_sum[1]
-        ]
-      }
+    @bank_transactions_by_category = sum_by_category(
+      bank_transactions: @bank_account.bank_transactions
+    )
+
+    @bank_transaction_directionals = sum_by_direction(
+      bank_transactions: @bank_account.bank_transactions
+    )
   end
 
   def new

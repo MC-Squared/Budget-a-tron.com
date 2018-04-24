@@ -10,8 +10,13 @@
       This week
     </button>
   </div>
+
 </div>
+<h2>Net Worth</h2>
 <%= area_chart_helper @bank_account_sums %>
 <hr>
+<h2>Incoming vs Outgoing</h2>
+<%= donut_chart_helper @bank_transaction_directionals %>
+<hr>
 <h2>Category Breakdown</h2>
-<%= donut_chart_helper @bank_transactions_by_category %>
+<%= column_chart @bank_transactions_by_category %>

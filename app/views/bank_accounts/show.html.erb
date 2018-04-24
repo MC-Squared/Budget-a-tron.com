@@ -5,8 +5,12 @@
               edit_id: 'edit_bank_account' }%>
 <%= area_chart_helper @bank_account_sums, legend: false %>
 <hr>
+<h2>Incoming vs Outgoing</h2>
+<%= donut_chart_helper @bank_transaction_directionals %>
+<hr>
 <h2>Category Breakdown</h2>
-<%= donut_chart_helper @bank_transactions_by_category %>
+<%= column_chart @bank_transactions_by_category %>
+<hr>
 <h2 class='pt-5'>Transactions</h2>
 <!-- TODO: make uploading nice (probably circle-plus link to ajax uploader) -->
 <%= form_tag(bank_account_imports_create_path(@bank_account), multipart: true) do %>

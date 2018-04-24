@@ -1,4 +1,4 @@
-module BankTransactionCumulativeSums
+module BankTransactionsCumulativeSums
   extend ActiveSupport::Concern
 
   def calculate_cumulative_sums_by_day(args={})

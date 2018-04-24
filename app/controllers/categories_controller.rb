@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  include BankTransactionsDirectionals
   layout 'dashboard'
   before_action :authenticate_user!
   before_action :set_category, only: [:edit, :update, :destroy]
@@ -13,6 +14,10 @@ class CategoriesController < ApplicationController
       name: @category.name,
       data: @category.bank_transactions.sum_by_day,
     }
+
+    @bank_transaction_directionals = sum_by_direction(
+      bank_transactions: @category.bank_transactions
+    )
   end
 
   def new

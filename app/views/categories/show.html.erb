@@ -5,6 +5,9 @@
               edit_id: 'edit_category' }%>
 <%= line_chart_helper @bank_transaction_sums, legend: false %>
 <hr>
+<h2>Incoming vs Outgoing</h2>
+<%= donut_chart_helper @bank_transaction_directionals %>
+<hr>
 <h2>
   Category Rules
   <%= link_to new_category_rule_path, class: 'text-muted', id: 'new_category_rule' do %>
