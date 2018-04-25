@@ -38,6 +38,13 @@ module BankAccountsHelper
   def column_chart_helper(values, options={})
     values = [values] unless values.is_a? Array
     defaults = default_chart_options
+    defaults[:library][:scales] = {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true,
+        }
+      }]
+    }
     options = defaults.merge(options)
 
     column_chart values, options
