@@ -59,8 +59,6 @@ class BankAccountsController < ApplicationController
 
     if @bank_account.save
       redirect_to bank_account_path(@bank_account), notice: 'Account was successfully created.'
-    else
-      render :new
     end
   end
 
@@ -70,8 +68,6 @@ class BankAccountsController < ApplicationController
   def update
     if @bank_account.update(bank_account_params)
       redirect_to bank_account_path(@bank_account), notice: 'Account was successfully updated.'
-    else
-      render :edit
     end
   end
 

@@ -32,16 +32,12 @@ class CategoriesController < ApplicationController
 
     if @category.save
        redirect_to @category, notice: 'Category was successfully created.'
-    else
-      render :new
     end
   end
 
   def update
     if @category.update(category_params)
       redirect_to @category, notice: 'Category was successfully updated.'
-    else
-      render :edit
     end
   end
 
