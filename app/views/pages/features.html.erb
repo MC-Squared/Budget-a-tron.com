@@ -1,0 +1,33 @@
+<div class="container marketing">
+  <div class="row">
+    <div class="col-md-5">
+      <h2>Track your net worth</h2>
+      <p class="lead">See your combined cash assets and how they are spread across your accounts.</p>
+      <p class="lead">Mouse over the chart to see datapoints for individual days.</p>
+    </div>
+    <div class="col-md-7">
+      <%= area_chart_helper @demo_net_worth_data %>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-5 order-md-2">
+      <h2>Monitor your cashflow</span></h2>
+    <p class="lead">Easily see how much money you are bringing in compared with how much you are spending.</p>
+  </div>
+  <div class="col-md-7 order-md-1">
+    <%= donut_chart_helper @demo_cashflow_data %>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-md-7">
+    <h2>Categorise your cash</h2>
+    <p class="lead">See where your money is going by categorising your transactions.</p>
+  </div>
+  <div class="col-md-5">
+    <%= column_chart_helper @demo_category_data %>
+  </div>
+</div>
+<hr>
+</div>
