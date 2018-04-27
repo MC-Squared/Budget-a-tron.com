@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
 
   root to: 'pages#home'
+  get 'about', to: 'pages#about'
 
   devise_for :users
 end
