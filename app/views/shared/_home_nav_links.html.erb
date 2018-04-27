@@ -4,16 +4,17 @@
       <%= nav_bar_brand %>
     <% end %>
     <% if user_signed_in? %>
+      <%= link_to 'Dashboard', bank_accounts_path, class: 'py-2 d-none d-md-inline-block' %>
+    <% end %>
+    <%= link_to 'How it works', howto_path, class: "py-2 d-none d-md-inline-block" %>
+    <%= link_to 'Features', features_path, class: "py-2 d-none d-md-inline-block" %>
+    <%= link_to 'Pricing', pricing_path, class: "py-2 d-none d-md-inline-block" %>
+    <%= link_to 'About', about_path, class: "py-2 d-none d-md-inline-block" %>
+    <% if user_signed_in? %>
       <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'py-2 d-none d-md-inline-block logout' %>
     <% else %>
       <%= link_to 'Sign Up', new_user_session_path, class: 'py-2 d-none d-md-inline-block register' %>
       <%= link_to 'Login', new_user_session_path, class: 'py-2 d-none d-md-inline-block login' %>
     <% end %>
-    <!-- <a class="py-2 d-none d-md-inline-block" href="#">Product</a>
-    <a class="py-2 d-none d-md-inline-block" href="#">Features</a>
-    <a class="py-2 d-none d-md-inline-block" href="#">Enterprise</a>
-    <a class="py-2 d-none d-md-inline-block" href="#">Support</a>
-    <a class="py-2 d-none d-md-inline-block" href="#">Pricing</a>
-    <a class="py-2 d-none d-md-inline-block" href="#">Cart</a> -->
   </div>
 </nav>

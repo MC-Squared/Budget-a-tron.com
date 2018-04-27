@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'about', to: 'pages#about'
   get 'pricing', to: 'pages#pricing'
   get 'features', to: 'pages#features'
+  get 'howto', to: 'pages#howto'
 
   devise_for :users
 end
