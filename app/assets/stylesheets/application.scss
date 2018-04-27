@@ -106,3 +106,19 @@
 .logo-color {
   color: #446b87;
 }
+
+.auth > .card {
+  width: 22rem;
+  margin: 1rem auto 2rem auto;
+  float: none;
+}
+
+.auth h2 {
+  font-size: 1.5rem;
+}
+
+.auth .card-link {
+  padding-top: 0.25em;
+  font-size: 0.9em;
+  display: inline-block;
+}
