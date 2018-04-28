@@ -11,7 +11,7 @@
   <% end %>
   <div class="field">
     <%= form.label :category %>
-    <%= collection_select(:category_rule, :category_id, Category.all, :id, :name) %>
+    <%= collection_select(:category_rule, :category_id, @categories, :id, :name) %>
   </div>
   <div class="field">
     <%= form.label :match_status %>

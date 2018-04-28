@@ -69,6 +69,13 @@ describe 'category' do
 
       expect(user.category_rules.last.match_payee).to eq('Test Match Payee')
     end
+
+    it 'will only list categories for the current user' do
+      cat2 = FactoryBot.create(:category)
+      visit new_category_rule_path
+
+      expect(page).to have_select('category_rule[category_id]', options: [category.name])
+    end
   end
 
   describe 'edit' do
@@ -96,6 +103,13 @@ describe 'category' do
       visit edit_category_rule_path(category_rule)
 
       expect(current_path).to eq(root_path)
+    end
+
+    it 'will only list categories for the current user' do
+      cat2 = FactoryBot.create(:category)
+      visit edit_category_rule_path(category_rule)
+
+      expect(page).to have_select('category_rule[category_id]', options: [category.name])
     end
   end
 

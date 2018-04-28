@@ -2,6 +2,7 @@ class CategoryRulesController < ApplicationController
   layout 'dashboard'
   before_action :authenticate_user!
   before_action :set_category_rule, only: [:show, :edit, :update, :destroy]
+  before_action :set_categories, only: [:new, :edit]
   before_action :authorize_category_rule, only: [:show, :edit, :update, :destroy]
 
   def show
@@ -41,6 +42,10 @@ class CategoryRulesController < ApplicationController
 
   def set_category_rule
     @category_rule = CategoryRule.find(params[:id])
+  end
+
+  def set_categories
+    @categories = policy_scope(Category)
   end
 
   def authorize_category_rule
