@@ -6,15 +6,15 @@
     <% if user_signed_in? %>
       <%= link_to 'Dashboard', bank_accounts_path, class: 'py-2 d-none d-md-inline-block' %>
     <% end %>
-    <%= link_to 'How it works', howto_path, class: "py-2 d-none d-md-inline-block" %>
-    <%= link_to 'Features', features_path, class: "py-2 d-none d-md-inline-block" %>
-    <%= link_to 'Pricing', pricing_path, class: "py-2 d-none d-md-inline-block" %>
-    <%= link_to 'About', about_path, class: "py-2 d-none d-md-inline-block" %>
+    <%= link_to 'How it works', howto_path, class: "py-2 d-none d-md-inline-block #{active? howto_path}" %>
+    <%= link_to 'Features', features_path, class: "py-2 d-none d-md-inline-block #{active? features_path}" %>
+    <%= link_to 'Pricing', pricing_path, class: "py-2 d-none d-md-inline-block #{active? pricing_path}" %>
+    <%= link_to 'About', about_path, class: "py-2 d-none d-md-inline-block #{active? about_path}" %>
     <% if user_signed_in? %>
       <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'py-2 d-none d-md-inline-block logout' %>
     <% else %>
-      <%= link_to 'Sign Up', new_user_session_path, class: 'py-2 d-none d-md-inline-block register' %>
-      <%= link_to 'Login', new_user_session_path, class: 'py-2 d-none d-md-inline-block login' %>
+      <%= link_to 'Sign Up', new_user_registration_path, class: "py-2 d-none d-md-inline-block register #{active? new_user_registration_path}" %>
+      <%= link_to 'Login', new_user_session_path, class: "py-2 d-none d-md-inline-block login #{active? new_user_session_path}" %>
     <% end %>
   </div>
 </nav>
