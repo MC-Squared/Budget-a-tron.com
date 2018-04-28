@@ -8,7 +8,7 @@
 <hr>
 <%= render 'shared/dashboard_chart_incoming_outgoing' %>
 <%= render 'shared/dashboard_chart_category_breakdown' %>
-<h2 class='pt-5'>Transactions</h2>
+<h2 class='pt-5'>Transactions</h2><a name="transactions"></a>
 <!-- TODO: make uploading nice (probably circle-plus link to ajax uploader) -->
 <%= form_tag(bank_account_imports_create_path(@bank_account), multipart: true) do %>
   <div class="form-group">

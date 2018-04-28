@@ -1,56 +1,27 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-5">
-      <h2>1. Sign Up</h2>
-    </div>
-    <div class="col-md-7">
-      <span data-feather="log-in" class="text-muted" style="width: 100%; height: 35%;"></span>
-    </div>
-  </div>
-  <hr>
-  <div class="row">
-    <div class="col-md-5">
-      <h2>2. Create bank accounts</h2>
-    </div>
-    <div class="col-md-7">
-      <span data-feather="dollar-sign" class="text-muted" style="width: 100%; height: 35%;"></span>
-    </div>
-  </div>
-  <hr>
-  <div class="row">
-    <div class="col-md-5">
-      <h2>3. Create categories</h2>
-    </div>
-    <div class="col-md-7">
-      <span data-feather="archive" class="text-muted" style="width: 100%; height: 35%;"></span>
-    </div>
-  </div>
-  <hr>
-  <div class="row">
-    <div class="col-md-5">
-      <h2>4. Create category rules</h2>
-    </div>
-    <div class="col-md-7">
-      <span data-feather="filter" class="text-muted" style="width: 100%; height: 35%;"></span>
-    </div>
-  </div>
-  <hr>
-  <div class="row">
-    <div class="col-md-5">
-      <h2>5. Upload transactions</h2>
-    </div>
-    <div class="col-md-7">
-      <span data-feather="upload-cloud" class="text-muted" style="width: 100%; height: 35%;"></span>
-    </div>
-  </div>
-  <hr>
-  <div class="row">
-    <div class="col-md-5">
-      <h2>Done!</h2>
-    </div>
-    <div class="col-md-7">
-      <span data-feather="check-circle" class="text-muted" style="width: 100%; height: 35%;"></span>
-    </div>
-  </div>
-  <hr>
+<div class="col-md-8 p-lg-5 mx-auto my-5">
+  <h2 class="text-center">Getting started checklist</h2>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <%= howto_list_item(1, 'Create', 'account', new_user_registration_path, user_signed_in?) %>
+    </li>
+    <li class="list-group-item">
+      <%= howto_list_resource(2, 'Create', :bank_accounts, new_bank_account_path) %>
+    </li>
+    <li class="list-group-item">
+      <%= howto_list_resource(3, 'Create', :categories, new_category_path) %>
+    </li>
+    <li class="list-group-item">
+      <%= howto_list_resource(4, 'Create', :category_rules, new_category_rule_path) %>
+    </li>
+    <li class="list-group-item">
+      <% if current_user.bank_accounts.count > 0 %>
+        <%= howto_list_resource(5, 'Upload', :bank_transactions, bank_account_path(current_user.bank_accounts.first, anchor: 'transactions')) %>
+      <% else %>
+        5. Upload bank transactions
+      <% end %>
+      <small>Currently only QIF format is supported</small>
+    </li>
+    <li class="list-group-item">6. Done!</li>
+ </ul>
 </div>
+<hr>
