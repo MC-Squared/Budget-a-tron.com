@@ -2,7 +2,7 @@ module BankTransactionsCumulativeSums
   extend ActiveSupport::Concern
 
   def calculate_cumulative_sums_by_day(args={})
-    dates = args[:dates] || []
+    dates = args[:dates].clone || []
     running_total = args[:start_balance] || 0
     bank_transactions = args[:bank_transactions]
 
@@ -10,13 +10,13 @@ module BankTransactionsCumulativeSums
     dates = daily_balances.keys.sort if dates.empty?
     return {} if dates.empty?
 
+    cumulative_balances = {}
     dates.unshift(dates.first - 1.day)
     dates.each do |d|
-      daily_balances[d] ||= 0
-      daily_balances[d] += running_total
-      running_total = daily_balances[d]
+      cumulative_balances[d] = running_total
+      running_total += daily_balances[d] unless daily_balances[d].nil?
     end
 
-    daily_balances
+    cumulative_balances
   end
 end

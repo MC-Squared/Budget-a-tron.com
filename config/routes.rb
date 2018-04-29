@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     post 'imports/create'
   end
 
+  get 'dashboard(/:timespan(/:page))', to: 'bank_accounts#index', as: 'dashboard'
+
   root to: 'pages#home'
   get 'about', to: 'pages#about'
   get 'pricing', to: 'pages#pricing'

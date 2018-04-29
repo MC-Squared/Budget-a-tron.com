@@ -63,6 +63,20 @@ module BankAccountsHelper
     '---'
   end
 
+  def timespan_text(timespan)
+    case timespan
+    when :all
+      'All time'
+    else
+      timespan.to_s.titleize + 'ly'
+    end
+  end
+
+  def get_nonactive_timespans(active_timespan)
+    timespans = [:all, :year, :month, :fortnight, :week]
+    timespans.select { |t| t != active_timespan }
+  end
+
   private
 
     def default_chart_options

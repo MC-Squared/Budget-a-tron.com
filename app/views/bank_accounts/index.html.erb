@@ -2,33 +2,27 @@
   <h1>Overview</h1>
   <div class="btn-toolbar mb-2 mb-md-0">
     <div class="btn-group mr-2">
-      <button class="btn btn-sm btn-outline-secondary">
+      <%= link_to dashboard_path(timespan: @timespan, page: @page+1), class: "btn btn-sm btn-outline-secondary #{@page >= @max_page ? 'disabled' : ''}" do %>
         <span data-feather="skip-back"></span>
         Prev
-      </button>
-      <button class="btn btn-sm btn-outline-secondary">
+      <% end %>
+      <%= link_to dashboard_path(timespan: @timespan, page: @page-1), class: "btn btn-sm btn-outline-secondary #{@page < 1 ? 'disabled' : ''}" do %>
         Next
         <span data-feather="skip-forward"></span>
-      </button>
+      <% end %>
     </div>
     <div class="dropdown mr-5">
       <button class="btn btn-sm btn-outline-secondary dropdown-toggle" data-toggle="dropdown">
         <span data-feather="calendar"></span>
-        All time
+        <%= timespan_text @timespan %>
       </button>
       <div class="dropdown-menu">
-        <a class='btn btn-sm btn-block btn-outline-secondary' href='#'>
-          <span data-feather="calendar"></span>
-          Yearly
-        </a>
-        <a class='btn btn-sm btn-block btn-outline-secondary' href='#'>
-          <span data-feather="calendar"></span>
-          Monthly
-        </a>
-        <a class='btn btn-sm btn-block btn-outline-secondary' href='#'>
-          <span data-feather="calendar"></span>
-          Weekly
-        </a>
+        <% get_nonactive_timespans(@timespan).each do |timespan| %>
+          <%= link_to dashboard_path(timespan: timespan), class: 'btn btn-sm btn-block btn-outline-secondary' do %>
+            <span data-feather="calendar"></span>
+            <%= timespan_text timespan %>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>
