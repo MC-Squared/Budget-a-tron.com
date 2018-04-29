@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
   resources :category_rules, except: [:index]
   resources :categories, except: [:index]
-  resources :bank_accounts do
+  resources :bank_accounts, except: [:index] do
     resources :bank_transactions
     post 'imports/create'
   end
 
-  get 'dashboard(/:timespan(/:page))', to: 'bank_accounts#index', as: 'dashboard'
+  get 'dashboard(/:timespan(/:page))', to: 'dashboard#index', as: 'dashboard'
 
   root to: 'pages#home'
   get 'about', to: 'pages#about'
