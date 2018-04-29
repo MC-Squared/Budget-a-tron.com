@@ -146,7 +146,7 @@ describe 'category' do
 
     it 'can be deleted' do
       expect { click_on 'delete_category' }.to change(Category, :count).by(-1)
-      expect(current_path).to eq(bank_accounts_path)
+      expect(current_path).to eq(dashboard_path)
     end
 
     it 'can only be deleted by owner' do

@@ -102,7 +102,7 @@ class BankAccountsController < ApplicationController
 
   def destroy
     @bank_account.destroy
-    redirect_to bank_accounts_url, notice: 'Account was successfully destroyed.'
+    redirect_to dashboard_path, notice: 'Account was successfully destroyed.'
   end
 
   private

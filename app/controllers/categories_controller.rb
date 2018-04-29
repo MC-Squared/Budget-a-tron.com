@@ -43,7 +43,7 @@ class CategoriesController < ApplicationController
 
   def destroy
     @category.destroy
-    redirect_to bank_accounts_path, notice: 'Category was successfully destroyed.'
+    redirect_to dashboard_path, notice: 'Category was successfully destroyed.'
   end
 
   private

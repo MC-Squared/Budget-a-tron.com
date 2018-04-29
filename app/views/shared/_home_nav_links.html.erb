@@ -4,7 +4,7 @@
       <%= nav_bar_brand %>
     <% end %>
     <% if user_signed_in? %>
-      <%= link_to 'Dashboard', bank_accounts_path, class: 'py-2 d-none d-md-inline-block' %>
+      <%= link_to 'Dashboard', dashboard_path, class: 'py-2 d-none d-md-inline-block' %>
     <% end %>
     <%= link_to 'How it works', howto_path, class: "py-2 d-none d-md-inline-block #{active? howto_path}" %>
     <%= link_to 'Features', features_path, class: "py-2 d-none d-md-inline-block #{active? features_path}" %>

@@ -11,7 +11,7 @@ describe 'BankAccount' do
 
   describe 'authorization' do
     it 'does not allow access without being signed in' do
-      visit bank_accounts_path
+      visit dashboard_path
       expect(current_path).to eq(new_user_session_path)
     end
   end
@@ -20,11 +20,11 @@ describe 'BankAccount' do
     describe 'index' do
       before do
         login_as user
-        visit bank_accounts_path
+        visit dashboard_path
       end
 
       it 'can be reached successfully' do
-        expect(current_path).to eq(bank_accounts_path)
+        expect(current_path).to eq(dashboard_path)
       end
 
       it 'has a tile of Bank Accounts' do
@@ -35,7 +35,7 @@ describe 'BankAccount' do
         bank_account = FactoryBot.create(:bank_account, user: user)
         second_account = FactoryBot.create(:second_bank_account, user: user)
 
-        visit bank_accounts_path
+        visit dashboard_path
         expect(page).to have_text bank_account.name
         expect(page).to have_text second_account.name
       end
@@ -49,7 +49,7 @@ describe 'BankAccount' do
                                           start_balance: 0
                                         )
 
-        visit bank_accounts_path
+        visit dashboard_path
         expect(page).to_not have_content(/should be hidden/)
       end
 
@@ -62,7 +62,7 @@ describe 'BankAccount' do
         category1 = FactoryBot.create(:category, name: 'testing', user: user)
         category2 = FactoryBot.create(:category, name: 'asdf', user: user)
 
-        visit bank_accounts_path
+        visit dashboard_path
         expect(page).to have_text category1.name
         expect(page).to have_text category2.name
       end
@@ -73,7 +73,7 @@ describe 'BankAccount' do
 
         other_category = Category.create(name: 'dont see me', user: other_user)
 
-        visit bank_accounts_path
+        visit dashboard_path
         expect(page).to have_content(category.name)
         expect(page).to_not have_content(other_category.name)
       end
@@ -192,7 +192,7 @@ describe 'BankAccount' do
 
       it 'can be deleted' do
         expect { click_on 'delete_bank_account' }.to change(BankAccount, :count).by(-1)
-        expect(current_path).to eq(bank_accounts_path)
+        expect(current_path).to eq(dashboard_path)
       end
 
       it 'can only be deleted by owner' do
