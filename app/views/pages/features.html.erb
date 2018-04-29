@@ -12,21 +12,21 @@
   <hr>
   <div class="row">
     <div class="col-md-5 order-md-2">
-      <h2>Monitor your cashflow</span></h2>
-    <p class="lead">Easily see how much money you are bringing in compared with how much you are spending.</p>
+      <h2>Monitor your cashflow</h2>
+      <p class="lead">Easily see how much money you are bringing in compared with how much you are spending.</p>
+    </div>
+    <div class="col-md-7 order-md-1">
+      <%= donut_chart_helper @demo_cashflow_data %>
+    </div>
   </div>
-  <div class="col-md-7 order-md-1">
-    <%= donut_chart_helper @demo_cashflow_data %>
+  <hr>
+  <div class="row">
+    <div class="col-md-7">
+      <h2>Categorise your cash</h2>
+      <p class="lead">See where your money is going by categorising your transactions.</p>
+    </div>
+    <div class="col-md-5">
+      <%= column_chart_helper @demo_category_data %>
+    </div>
   </div>
-</div>
-<hr>
-<div class="row">
-  <div class="col-md-7">
-    <h2>Categorise your cash</h2>
-    <p class="lead">See where your money is going by categorising your transactions.</p>
-  </div>
-  <div class="col-md-5">
-    <%= column_chart_helper @demo_category_data %>
-  </div>
-</div>
 </div>
