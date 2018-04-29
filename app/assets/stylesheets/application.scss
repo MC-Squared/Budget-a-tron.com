@@ -134,5 +134,9 @@ nav .active {
 
 .howto-icon {
   vertical-align: bottom;
+  margin-right: 0.5em;
+}
+
+.howto-icon.checked {
   color: green;
 }

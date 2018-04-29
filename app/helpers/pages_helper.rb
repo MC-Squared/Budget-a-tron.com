@@ -4,15 +4,15 @@ module PagesHelper
     if user_signed_in?
       if done
         content_tag :div do
+          concat check_icon
           concat (content_tag :span, class:'strikethrough' do
             concat prefix
             concat link_text
           end)
-          concat " "
-          concat check_icon
         end
       else
         content_tag :div do
+          concat uncheck_icon
           concat prefix
           concat link_to(link_text, path)
         end
@@ -32,6 +32,11 @@ module PagesHelper
 
     def check_icon
       content_tag :span, nil,
-        class:'howto-icon', 'data-feather': 'check-square'
+        class:'howto-icon checked', 'data-feather': 'check-square'
+    end
+
+    def uncheck_icon
+      content_tag :span, nil,
+        class:'howto-icon', 'data-feather': 'square'
     end
 end
