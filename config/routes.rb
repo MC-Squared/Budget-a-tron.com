@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     post 'imports/create'
   end
 
-  get 'dashboard(/:timespan(/:page))', to: 'dashboard#index', as: 'dashboard'
+  get 'dashboard', to: 'dashboard#index'
 
   root to: 'pages#home'
   get 'about', to: 'pages#about'

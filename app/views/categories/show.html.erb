@@ -1,6 +1,7 @@
 <%= render partial: 'shared/dashboard_titlebar',
             locals: {
               name: @category.name,
+              record: @category,
               edit_path: edit_category_path(@category),
               edit_id: 'edit_category' }%>
 <%= line_chart_helper @bank_transaction_sums, legend: false %>
@@ -18,7 +19,6 @@
 <h2 class='pt-5'>Transactions</h2>
 <%= render partial: 'shared/dashboard_transactions',
            locals: {
-             bank_transactions: @category.bank_transactions,
              show_category: false
            }
 %>

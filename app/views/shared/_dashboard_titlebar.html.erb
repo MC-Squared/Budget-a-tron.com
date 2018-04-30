@@ -6,9 +6,29 @@
     </small>
   </h1>
   <div class="ml-auto btn-toolbar mb-2 mb-md-0">
-    <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
-      <span data-feather="calendar"></span>
-      This week
-    </button>
+    <div class="btn-group mr-2">
+      <%= link_to [record, timespan: @timespan, page: @page+1], class: "btn btn-sm btn-outline-secondary #{@page >= @max_page ? 'disabled' : ''}" do %>
+        <span data-feather="skip-back"></span>
+        Prev
+      <% end %>
+      <%= link_to [record, timespan: @timespan, page: @page-1], class: "btn btn-sm btn-outline-secondary #{@page < 1 ? 'disabled' : ''}" do %>
+        Next
+        <span data-feather="skip-forward"></span>
+      <% end %>
+    </div>
+    <div class="dropdown mr-5">
+      <button class="btn btn-sm btn-outline-secondary dropdown-toggle" data-toggle="dropdown">
+        <span data-feather="calendar"></span>
+        <%= timespan_text @timespan %>
+      </button>
+      <div class="dropdown-menu">
+        <% get_nonactive_timespans(@timespan).each do |timespan| %>
+          <%= link_to [record, timespan: timespan], class: 'btn btn-sm btn-block btn-outline-secondary' do %>
+            <span data-feather="calendar"></span>
+            <%= timespan_text timespan %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

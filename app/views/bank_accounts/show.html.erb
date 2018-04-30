@@ -1,6 +1,7 @@
 <%= render partial: 'shared/dashboard_titlebar',
             locals: {
               name: @bank_account.name,
+              record: @bank_account,
               edit_path: edit_bank_account_path(@bank_account),
               edit_id: 'edit_bank_account' }%>
 <h2>Balance</h2>
@@ -8,7 +9,8 @@
 <hr>
 <%= render 'shared/dashboard_chart_incoming_outgoing' %>
 <%= render 'shared/dashboard_chart_category_breakdown' %>
-<h2 class='pt-5'>Transactions</h2><a name="transactions"></a>
+<h2 class='pt-5'>Transactions</h2>
+<a name="transactions"></a>
 <!-- TODO: make uploading nice (probably circle-plus link to ajax uploader) -->
 <%= form_tag(bank_account_imports_create_path(@bank_account), multipart: true) do %>
   <div class="form-group">
@@ -18,7 +20,6 @@
 <% end %>
 <%= render partial: 'shared/dashboard_transactions',
            locals: {
-             bank_transactions: @bank_account.bank_transactions,
              show_category: true
             }
 %>

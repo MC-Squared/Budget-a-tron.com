@@ -5,6 +5,7 @@
       <% if show_category %>
         <th>Category</th>
       <% end %>
+      <th>Date</th>
       <th>Status</th>
       <th>Amount</th>
       <th>Payee</th>
@@ -13,11 +14,12 @@
       <th>Bank Category</th>
     </thead>
     <tbody>
-      <% bank_transactions.each do |trans| %>
+      <% @bank_transactions.each do |trans| %>
         <tr>
           <% if show_category %>
             <td><%= category_link_helper trans.category %></td>
           <% end %>
+          <td><%= trans.date %></td>
           <td><%= trans.status %></td>
           <td class="<%= currency_color_class trans.amount %>">
             <%= number_to_currency(trans.amount) %>
