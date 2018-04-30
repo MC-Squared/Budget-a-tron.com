@@ -9,13 +9,13 @@ class BankAccountsController < ApplicationController
   before_action :authorize_bank_account, only: [:edit, :update, :destroy]
 
   def show
-    @bank_account = BankAccount.includes(:bank_transactions, :categories).find(params[:id])
+    @bank_account = BankAccount.find(params[:id])
     authorize @bank_account
 
     dates = @bank_account.bank_transactions.get_dates
     @max_page = get_max_page(dates)
     dates = get_dates_for_timespan_page(dates)
-    @bank_transactions = @bank_account.bank_transactions.for_date(dates)
+    @bank_transactions = @bank_account.bank_transactions.includes(:category).for_date(dates)
 
     @bank_account_sums = {
       name: @bank_account.name,

@@ -7,7 +7,7 @@ class CategoriesController < ApplicationController
   before_action :authorize_category, only: [:edit, :update, :destroy]
 
   def show
-    @category = Category.includes(:category_rules, :bank_transactions).find(params[:id])
+    @category = Category.includes(:category_rules).find(params[:id])
     authorize_category
 
     dates = @category.bank_transactions.get_dates

@@ -7,7 +7,7 @@ class DashboardController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    bank_accounts = policy_scope(BankAccount).includes(:bank_transactions)
+    bank_accounts = policy_scope(BankAccount)
     dates = policy_scope(BankTransaction).get_dates
 
     @max_page = get_max_page(dates)
