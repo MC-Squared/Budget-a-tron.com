@@ -13,7 +13,8 @@ class CategoriesController < ApplicationController
     dates = @category.bank_transactions.get_dates
     @max_page = get_max_page(dates)
     dates = get_dates_for_timespan_page(dates)
-    @bank_transactions = @category.bank_transactions.for_date(dates)
+    @bank_transactions = @category.bank_transactions
+                                  .for_date_range(dates.first, dates.last)
 
     @bank_transaction_sums = {
       name: @category.name,

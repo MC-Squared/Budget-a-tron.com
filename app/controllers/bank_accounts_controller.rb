@@ -15,7 +15,8 @@ class BankAccountsController < ApplicationController
     dates = @bank_account.bank_transactions.get_dates
     @max_page = get_max_page(dates)
     dates = get_dates_for_timespan_page(dates)
-    @bank_transactions = @bank_account.bank_transactions.includes(:category).for_date(dates)
+    @bank_transactions = @bank_account.bank_transactions.includes(:category)
+                                        .for_date_range(dates.first, dates.last)
 
     @bank_account_sums = {
       name: @bank_account.name,

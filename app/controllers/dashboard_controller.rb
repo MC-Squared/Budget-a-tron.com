@@ -24,7 +24,8 @@ class DashboardController < ApplicationController
       }
     end
 
-    transactions = policy_scope(BankTransaction).for_date(dates)
+    transactions = policy_scope(BankTransaction)
+                      .for_date_range(dates.first, dates.last)
 
     @bank_transaction_directionals = sum_by_direction(
       bank_transactions: transactions
