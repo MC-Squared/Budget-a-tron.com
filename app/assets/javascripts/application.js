@@ -16,6 +16,7 @@
 //= require Chart.bundle
 //= require chartkick
 //= require feather-icons/dist/feather
+//= require bootstrap-notify/bootstrap-notify
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks

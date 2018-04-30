@@ -11,12 +11,10 @@
   </head>
   <body>
     <%= render 'shared/home_nav_links' %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
     <%= yield %>
     <%= render 'shared/home_footer' %>
   </body>
-  <!-- Icons -->
+  <%= render 'shared/flash' %>
   <script>
     feather.replace()
   </script>

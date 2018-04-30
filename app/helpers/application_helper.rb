@@ -13,4 +13,15 @@ module ApplicationHelper
   def footer_brand
     brand_helper 'logo-black.svg'
   end
+
+  def flash_type_to_class(flash_type)
+    case flash_type
+    when 'notice'
+      'success'
+    when 'alert'
+      'danger'
+    else
+      'info'
+    end
+  end
 end
