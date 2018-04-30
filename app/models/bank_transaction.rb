@@ -9,6 +9,8 @@ class BankTransaction < ApplicationRecord
 
   scope :sum_by_day, -> { group(:date).sum(:amount) }
   scope :sum_by_category, -> { group(:category).sum(:amount) }
+  scope :for_date, ->(date) { where(date: date) }
+  scope :get_dates, -> { distinct(:date).pluck(:date).sort }
   scope :positive_amount_sum, -> { where('amount > 0').sum(:amount) }
   scope :negative_amount_sum, -> { where('amount < 0').sum(:amount) }
 

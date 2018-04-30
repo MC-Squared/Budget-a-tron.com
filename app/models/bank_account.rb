@@ -5,4 +5,8 @@ class BankAccount < ApplicationRecord
 
   has_many :bank_transactions
   has_many :categories, through: :bank_transactions
+
+  def balance_before_date(date)
+    bank_transactions.where('date < ?', date).sum(:amount)
+  end
 end
