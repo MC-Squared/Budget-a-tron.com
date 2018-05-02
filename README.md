@@ -1,24 +1,28 @@
-# README
+# Budget-A-Tron
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Budget-A-Tron is a simple way to visualise financial data (via QIF file import).
 
-Things you may want to cover:
+## Why
 
-* Ruby version
+Budget-A-Tron exists for two main reasons:
 
-* System dependencies
+1. As an addition to my personal [portfolio](http://www.jmiles.me/portfolios)
+2. A way for me to keep an eye on my own finances
 
-* Configuration
+## Competitors
 
-* Database creation
+Why not just use Mint/Pocketsmith/Pocketbook/etc
 
-* Database initialization
+I'm sure those services do a fine job, but here's a list of items in favour of Budget-A-Tron:
 
-* How to run the test suite
+* Free for unlimited accounts and open source (GPLv3)
+* Not limited to particular country/region
+* No access to your personal bank account (only manual imports)
 
-* Services (job queues, cache servers, search engines, etc.)
+## Technologies
 
-* Deployment instructions
+Pretty standard rails stack:
 
-* ...
+* Rails 5
+* RSpec
+* Bootstrap 4
