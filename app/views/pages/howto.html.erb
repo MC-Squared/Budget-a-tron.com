@@ -14,7 +14,7 @@
       <%= howto_list_resource(4, 'Create', :category_rules, new_category_rule_path) %>
     </li>
     <li class="list-group-item">
-      <% if current_user.bank_accounts.count > 0 %>
+      <% if user_signed_in? && current_user.bank_accounts.count > 0 %>
         <%= howto_list_resource(5, 'Upload', :bank_transactions, bank_account_path(current_user.bank_accounts.first, anchor: 'transactions')) %>
       <% else %>
         5. Upload bank transactions
