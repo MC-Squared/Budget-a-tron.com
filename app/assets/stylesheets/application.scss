@@ -141,3 +141,20 @@ nav .active {
 .howto-icon.checked {
   color: green;
 }
+
+.about-container {
+  display: block;
+  position: relative;
+}
+
+.about-container:after {
+  width: 100%;
+  height: 100%;
+  content: '';
+  background-image: image-url('logo.svg');
+  background-size: cover;
+  opacity: 0.03;
+  top: 0;
+  left: 0;
+  position: absolute;
+}
