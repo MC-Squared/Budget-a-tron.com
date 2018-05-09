@@ -45,7 +45,6 @@ describe 'Dashboard' do
         other_user_account = BankAccount.create!(
                                           user: other_user,
                                           name: 'should be hidden',
-                                          bank_number: 'dont see me',
                                           start_balance: 0
                                         )
 

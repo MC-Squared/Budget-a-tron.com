@@ -11,12 +11,10 @@ user = User.create!(email: 'test@user.com',
               confirmed_at: Time.zone.now)
 
 chq = BankAccount.create!(user: user,
-                    name: 'Cheque',
-                    bank_number: '1234')
+                    name: 'Cheque')
 
 sav = BankAccount.create!(user: user,
-                    name: 'Savings',
-                    bank_number: '1234')
+                    name: 'Savings')
 
 5.times do
   Category.create!(user: user, name: Faker::Commerce.department(1))
