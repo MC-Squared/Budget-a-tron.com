@@ -65,14 +65,14 @@ describe 'BankAccount' do
 
       it 'can be created from new form page' do
         fill_in 'bank_account[name]', with: 'Test Account Name'
-        fill_in 'bank_account[start_balance]', with: 123
+        fill_in 'bank_account[last_balance]', with: 123
 
         expect { click_on 'Save' }.to change(BankAccount, :count).by(1)
       end
 
       it 'will have a user associated with it' do
         fill_in 'bank_account[name]', with: 'Test User Assoc'
-        fill_in 'bank_account[start_balance]', with: 456
+        fill_in 'bank_account[last_balance]', with: 456
         click_on 'Save'
 
         expect(user.bank_accounts.last.name).to eq('Test User Assoc')

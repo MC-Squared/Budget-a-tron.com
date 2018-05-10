@@ -14,8 +14,8 @@
     <%= f.text_field :name %>
   </div>
   <div>
-    <%= f.label :start_balance %>
-    <%= f.text_field :start_balance %>
+    <%= f.label "Balance at #{@last_balance_date}" %>
+    <%= f.text_field :last_balance %>
   </div>
   <div>
     <%= f.submit 'Save' %>

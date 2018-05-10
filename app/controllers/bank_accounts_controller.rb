@@ -5,13 +5,11 @@ class BankAccountsController < ApplicationController
   include DatesPageableByTimespan
   layout 'dashboard'
   before_action :authenticate_user!
-  before_action :set_bank_account, only: [:edit, :update, :destroy]
-  before_action :authorize_bank_account, only: [:edit, :update, :destroy]
+  before_action :set_bank_account, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_bank_account, only: [:show, :edit, :update, :destroy]
+  before_action :set_bank_account_last_date, only: [:show, :edit]
 
   def show
-    @bank_account = BankAccount.find(params[:id])
-    authorize @bank_account
-
     dates = @bank_account.bank_transactions.get_dates
     @max_page = get_max_page(dates)
     dates = get_dates_for_timespan_page(dates)
@@ -70,7 +68,11 @@ class BankAccountsController < ApplicationController
     authorize @bank_account
   end
 
+  def set_bank_account_last_date
+    @last_balance_date = @bank_account.last_transaction_date
+  end
+
   def bank_account_params
-    params.require(:bank_account).permit(:user_id, :name, :bank_number, :start_balance)
+    params.require(:bank_account).permit(:user_id, :name, :bank_number, :last_balance)
   end
 end
