@@ -10,7 +10,7 @@ class BankAccountsController < ApplicationController
   before_action :set_bank_account_last_date, only: [:show, :edit]
 
   def show
-    dates = @bank_account.bank_transactions.get_dates
+    dates = @bank_account.bank_transactions.get_sorted_dates
     @max_page = get_max_page(dates)
     dates = get_dates_for_timespan_page(dates)
     @bank_transactions = @bank_account.bank_transactions.includes(:category)

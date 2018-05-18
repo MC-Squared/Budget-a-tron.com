@@ -8,7 +8,7 @@ class DashboardController < ApplicationController
 
   def index
     bank_accounts = policy_scope(BankAccount)
-    dates = policy_scope(BankTransaction).get_dates
+    dates = policy_scope(BankTransaction).get_sorted_dates
 
     @max_page = get_max_page(dates)
     dates = get_dates_for_timespan_page(dates)

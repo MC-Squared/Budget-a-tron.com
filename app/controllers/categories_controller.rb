@@ -10,7 +10,7 @@ class CategoriesController < ApplicationController
     @category = Category.includes(:category_rules).find(params[:id])
     authorize_category
 
-    dates = @category.bank_transactions.get_dates
+    dates = @category.bank_transactions.get_sorted_dates
     @max_page = get_max_page(dates)
     dates = get_dates_for_timespan_page(dates)
     @bank_transactions = @category.bank_transactions

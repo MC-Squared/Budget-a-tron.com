@@ -13,7 +13,7 @@ class BankTransaction < ApplicationRecord
   scope :for_date_range, ->(first_date, last_date) {
     where('date >= ? AND date <= ?', first_date, last_date)
   }
-  scope :get_dates, -> { distinct(:date).pluck(:date).sort }
+  scope :get_sorted_dates, -> { distinct(:date).pluck(:date).sort }
   scope :positive_amount_sum, -> { where('amount > 0').sum(:amount) }
   scope :negative_amount_sum, -> { where('amount < 0').sum(:amount) }
 
