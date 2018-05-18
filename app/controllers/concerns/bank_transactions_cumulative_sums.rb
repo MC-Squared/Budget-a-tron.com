@@ -13,8 +13,8 @@ module BankTransactionsCumulativeSums
     cumulative_balances = {}
     dates.unshift(dates.first - 1.day)
     dates.each do |d|
-      cumulative_balances[d] = running_total
       running_total += daily_balances[d] unless daily_balances[d].nil?
+      cumulative_balances[d] = running_total
     end
 
     cumulative_balances
