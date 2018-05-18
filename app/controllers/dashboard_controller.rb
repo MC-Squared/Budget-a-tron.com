@@ -18,7 +18,7 @@ class DashboardController < ApplicationController
       @bank_account_sums << {
         name: ba.name,
         data: calculate_cumulative_sums_by_day(
-          bank_transactions: ba.bank_transactions,
+          bank_transactions: ba.bank_transactions.order(date: :asc),
           start_balance: ba.balance_before_date(dates.first),
           dates: dates),
       }

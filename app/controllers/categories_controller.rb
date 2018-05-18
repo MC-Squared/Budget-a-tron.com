@@ -15,6 +15,7 @@ class CategoriesController < ApplicationController
     dates = get_dates_for_timespan_page(dates)
     @bank_transactions = @category.bank_transactions
                                   .for_date_range(dates.first, dates.last)
+                                  .order(date: :desc)
 
     @bank_transaction_sums = {
       name: @category.name,
