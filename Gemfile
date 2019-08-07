@@ -33,7 +33,7 @@ group :development do
   gem 'bullet'
 end
 
-gem 'devise', '~> 4.4', '>= 4.4.3'
+gem 'devise', '~> 4.6'
 gem 'pundit', '~> 2.0'
 gem 'qif', '~> 1.2'
 gem 'bootstrap', '~> 4.0'
