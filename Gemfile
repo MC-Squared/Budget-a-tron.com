@@ -19,7 +19,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-byebug', '~> 3.6'
   gem 'pry-rails', '~> 0.3.6'
-  gem 'rspec-rails', '~> 3.7', '>= 3.7.2'
+  gem 'rspec-rails', '~> 3.9'
   gem 'capybara', '~> 3.0', '>= 3.0.1'
   gem 'factory_bot_rails', '~> 4.8', '>= 4.8.2'
   gem 'faker', '~> 1.8', '>= 1.8.7'
