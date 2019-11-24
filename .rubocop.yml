@@ -1,18 +1,12 @@
-require: './ci/custom_cops/lib/custom_cops'
-
 AllCops:
-  TargetRubyVersion: 2.5
+  TargetRubyVersion: 2.6
   # RuboCop has a bunch of cops enabled by default. This setting tells RuboCop
   # to ignore them, so only the ones explicitly set in this file are enabled.
   DisabledByDefault: true
   Exclude:
     - '**/templates/**/*'
     - '**/vendor/**/*'
-
-# Prefer assert_not_x over refute_x
-CustomCops/RefuteNot:
-  Include:
-    - '**/*_test.rb'
+    - '**/node_modules/**/*'
 
 # Prefer &&/|| over and/or.
 Style/AndOr:
@@ -50,7 +44,7 @@ Layout/EmptyLinesAroundMethodBody:
 Layout/EmptyLinesAroundModuleBody:
   Enabled: true
 
-Layout/FirstParameterIndentation:
+Layout/IndentFirstArgument:
   Enabled: true
 
 # Use Ruby >= 1.9 syntax for hashes. Prefer { a: :b } over { :a => :b }.
@@ -61,7 +55,7 @@ Style/HashSyntax:
 # extra level of indentation.
 Layout/IndentationConsistency:
   Enabled: true
-  EnforcedStyle: rails
+  EnforcedStyle: indented_internal_methods
 
 # Two spaces, no tabs (for indentation).
 Layout/IndentationWidth:
@@ -141,12 +135,12 @@ Layout/TrailingWhitespace:
   Enabled: true
 
 # Use quotes for string literals when they are enough.
-Style/UnneededPercentQ:
+Style/RedundantPercentQ:
   Enabled: true
 
 # Align `end` with the matching keyword or starting expression except for
 # assignments, where it should be aligned with the LHS.
-Lint/EndAlignment:
+Layout/EndAlignment:
   Enabled: true
   EnforcedStyleAlignWith: variable
   AutoCorrect: true
