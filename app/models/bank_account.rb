@@ -19,6 +19,6 @@ class BankAccount < ApplicationRecord
   end
 
   def last_balance=(new_balance)
-    self.start_balance = (BigDecimal.new(new_balance) - last_balance)
+    self.start_balance = (BigDecimal(new_balance) - last_balance)
   end
 end
