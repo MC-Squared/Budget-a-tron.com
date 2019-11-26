@@ -3,13 +3,12 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.4'
 
-gem 'rails', '~> 5.2.3'
-gem 'pg', '>= 0.18', '< 2.0'
+gem 'rails', '~> 6.0.1'
+gem 'pg', '>= 1.0', '< 2.0'
 gem 'puma', '~> 4.3'
 gem 'sass-rails', '~> 6.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'webpacker'
-gem 'coffee-rails', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.9'
 
