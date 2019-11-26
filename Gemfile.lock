@@ -1,10 +1,3 @@
-GIT
-  remote: https://github.com/thijsre/chartkick.git
-  revision: 73e0c86b781da52fed3a7678a4b27e24b2fe6406
-  branch: master
-  specs:
-    chartkick (2.3.3)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -75,6 +68,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (~> 1.5)
       xpath (~> 3.2)
+    chartkick (3.3.0)
     coderay (1.1.2)
     coffee-rails (5.0.0)
       coffee-script (>= 2.2.0)
@@ -261,7 +255,7 @@ DEPENDENCIES
   bullet
   byebug
   capybara (~> 3.29)
-  chartkick!
+  chartkick (~> 3.3)
   coffee-rails (~> 5.0)
   devise (~> 4.7)
   factory_bot_rails (~> 5.1)
