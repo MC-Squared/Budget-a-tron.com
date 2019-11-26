@@ -9,7 +9,7 @@ class ImportsController < ApplicationController
       return
     end
 
-    transactions = QIFImport.import_transactions(@bank_account, file.path)
+    transactions = QifImporter.import_transactions(@bank_account, file.path)
 
     new_transactions = remove_old_transactions(transactions)
     if save_all_transactions(new_transactions)

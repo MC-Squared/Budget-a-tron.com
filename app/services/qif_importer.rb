@@ -1,6 +1,6 @@
 require "qif"
 
-module QIFImport
+class QifImporter
   def self.import_transactions(bank_account, filepath)
     qif = Qif::Reader.new(open(filepath))
     transactions = []
