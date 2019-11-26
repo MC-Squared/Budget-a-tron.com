@@ -1,0 +1,20 @@
+---
+language: ruby
+cache: bundler
+before_script:
+- bin/rails db:test:prepare
+- nvm install stable
+- nvm use stable
+- bin/yarn
+addons:
+  chrome: stable
+  postgresql: "11"
+  apt:
+    packages:
+    - postgresql-11
+    - postgresql-client-11
+env:
+  global:
+    - PGPORT=5433
+script:
+- bundle exec rspec
