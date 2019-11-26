@@ -259,7 +259,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootsnap (>= 1.1.0)
+  bootsnap (>= 1.4.4)
   bootstrap (~> 4.3)
   bullet
   byebug
