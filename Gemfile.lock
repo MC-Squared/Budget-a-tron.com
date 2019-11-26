@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/thijsre/chartkick.git
-  revision: 73e0c86b781da52fed3a7678a4b27e24b2fe6406
+  revision: b07d4d02c9c6d0dc742ee8571a5287d508dea2ec
   branch: master
   specs:
-    chartkick (2.3.3)
+    chartkick (2.3.5)
 
 GEM
   remote: https://rubygems.org/
