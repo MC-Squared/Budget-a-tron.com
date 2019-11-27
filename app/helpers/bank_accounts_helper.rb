@@ -81,7 +81,7 @@ module BankAccountsHelper
 
     def default_chart_options
       {
-        defer: true,
+        defer: false,
         points: false,
         prefix: '$',
         thousands: ',',

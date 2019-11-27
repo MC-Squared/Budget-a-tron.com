@@ -6,7 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'dashboard', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <title>Budgetatron</title>
   </head>
   <body>
@@ -21,7 +21,4 @@
     </div>
   </body>
   <%= render 'shared/flash' %>
-  <script>
-    feather.replace()
-  </script>
 </html>
