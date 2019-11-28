@@ -9,7 +9,7 @@
 <%= render 'shared/dashboard_chart_incoming_outgoing' %>
 <h2>
   Category Rules
-  <%= link_to new_category_rule_path, class: 'text-muted', id: 'new_category_rule' do %>
+  <%= link_to new_category_rule_path(category: @category), class: 'text-muted', id: 'new_category_rule' do %>
     <span class="align-middle" data-feather="plus-circle"></span>
   <% end %>
 </h2>

@@ -9,7 +9,7 @@ class CategoryRulesController < ApplicationController
   end
 
   def new
-    @category_rule = CategoryRule.new
+    @category_rule = CategoryRule.new(category_id: params[:category])
   end
 
   def edit
