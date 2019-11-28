@@ -17,7 +17,17 @@
       <% @bank_transactions.each do |trans| %>
         <tr>
           <% if show_category %>
-            <td><%= category_link_helper trans.category %></td>
+            <% select_categories ||= nil %>
+            <% if select_categories.present? %>
+              <td>
+              <%= form_with model: [trans.bank_account, trans] do |f| %>
+                <%= f.collection_select(:category_id, select_categories, :id, :name, include_blank: '') %>
+                <%= f.submit "Update"%>
+              <% end %>
+              </td>
+            <% else %>
+              <td><%= category_link_helper trans.category %></td>
+            <% end %>
           <% end %>
           <td><%= trans.date %></td>
           <td><%= trans.status %></td>

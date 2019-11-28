@@ -37,7 +37,7 @@ class BankTransactionsController < ApplicationController
 
   def update
     if @bank_transaction.update(bank_transaction_params)
-      redirect_to bank_account_bank_transactions_path(@bank_transaction.bank_account, @bank_transaction), notice: 'Bank transaction was successfully updated.'
+      redirect_back fallback_location: bank_account_bank_transactions_path(@bank_transaction.bank_account, @bank_transaction), notice: 'Bank transaction was successfully updated.'
     else
       render :edit
     end
