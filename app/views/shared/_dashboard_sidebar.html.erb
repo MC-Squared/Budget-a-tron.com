@@ -22,6 +22,7 @@
         </li>
       <% end %>
     </ul>
+
     <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
       <span>Categories</span>
       <%= link_to new_category_path, class: 'd-flex align-items-center text-muted', id: 'new_category' do %>
@@ -29,6 +30,9 @@
       <% end %>
     </h6>
     <ul class="nav flex-column">
+      <li class="nav-item">
+        <%= link_to "Uncategorized", uncategorized_bank_transactions_path, class: "nav-link" %>
+      </li>
       <% get_sidebar_categories.each do |c| %>
         <li class="nav-item">
           <%= link_to category_path(c), class: "nav-link #{active? category_path(c)}" do %>

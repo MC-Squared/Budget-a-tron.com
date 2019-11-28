@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :bank_transactions
     post 'imports/create'
   end
+  resources :uncategorized_bank_transactions, only: [:index]
 
   get 'dashboard', to: 'dashboard#index'
 
