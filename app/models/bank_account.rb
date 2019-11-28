@@ -15,10 +15,15 @@ class BankAccount < ApplicationRecord
   end
 
   def last_balance
-    start_balance + bank_transactions.sum(:amount)
+    start_balance + total_transaction_amount
   end
 
   def last_balance=(new_balance)
-    self.start_balance = (BigDecimal(new_balance) - last_balance)
+    new_balance = new_balance.to_s.gsub(",", "")
+    self.start_balance = (BigDecimal(new_balance) - total_transaction_amount)
+  end
+
+  def total_transaction_amount
+    bank_transactions.sum(:amount)
   end
 end

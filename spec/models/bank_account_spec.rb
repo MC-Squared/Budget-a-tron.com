@@ -53,7 +53,7 @@ RSpec.describe BankAccount, type: :model do
 
         account.update!(last_balance: 50)
 
-        expect(account.start_balance).to eq(50 - 100 - 123)
+        expect(account.start_balance).to eq(50 - 123)
       end
     end
   end
