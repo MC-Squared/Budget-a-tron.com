@@ -1,18 +1,7 @@
-<script>
+<div>
   <% flash.each do |type, message| %>
-    $.notify({
-    message: "<%= message %>"
-    },{
-    type: "<%= flash_type_to_class type %>",
-    placement: {
-    from: "top",
-    align: "right",
-    },
-    delay: 3000,
-    animate: {
-    enter: "animated bounce",
-    exit: "animated bounce"
-    }
-    });
+    <div class="alert alert-<%= flash_type_to_class(type) %>">
+      <%= message %>
+    </div>
   <% end %>
-</script>
+</div>

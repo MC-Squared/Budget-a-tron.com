@@ -15,10 +15,10 @@
       <div class="row">
         <%= render 'shared/dashboard_sidebar' %>
         <main role="main" class="col-md-10 ml-sm-auto col-lg-10 pt-3 px-4">
+          <%= render 'shared/flash' %>
           <%= yield %>
         </main>
       </div>
     </div>
   </body>
-  <%= render 'shared/flash' %>
 </html>
