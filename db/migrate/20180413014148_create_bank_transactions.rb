@@ -5,8 +5,6 @@ class CreateBankTransactions < ActiveRecord::Migration[5.2]
       t.integer :number
       t.date :date
       t.decimal :amount
-      t.string :status
-      t.integer :number
       t.string :payee
       t.string :memo
       t.string :adress
