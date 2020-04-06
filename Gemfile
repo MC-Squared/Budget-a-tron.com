@@ -36,6 +36,6 @@ end
 gem 'devise', '~> 4.7'
 gem 'pundit', '~> 2.0'
 gem 'qif', '~> 1.2'
-gem 'bootstrap', '~> 4.3'
+gem 'bootstrap', '~> 4.4'
 gem 'jquery-rails', '~> 4.3'
 gem 'chartkick', '~> 3.2'
