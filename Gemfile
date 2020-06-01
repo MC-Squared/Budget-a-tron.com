@@ -22,7 +22,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 4.0'
   gem 'capybara', '~> 3.32'
   gem 'factory_bot_rails', '~> 5.2'
-  gem 'faker', '~> 2.11'
+  gem 'faker', '~> 2.12'
 end
 
 group :development do
