@@ -21,7 +21,7 @@ group :development, :test do
   gem 'pry-rails', '~> 0.3.9'
   gem 'rspec-rails', '~> 4.0'
   gem 'capybara', '~> 3.33'
-  gem 'factory_bot_rails', '~> 6.0'
+  gem 'factory_bot_rails', '~> 6.1'
   gem 'faker', '~> 2.13'
 end
 
