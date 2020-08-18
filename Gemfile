@@ -10,7 +10,7 @@ gem 'sass-rails', '~> 6.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'webpacker'
 gem 'turbolinks', '~> 5'
-gem 'jbuilder', '~> 2.9'
+gem 'jbuilder', '~> 2.10'
 
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'honeybadger', '~> 4.7'
