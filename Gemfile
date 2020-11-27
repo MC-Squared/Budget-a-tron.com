@@ -20,7 +20,7 @@ group :development, :test do
   gem 'pry-byebug', '~> 3.7'
   gem 'pry-rails', '~> 0.3.9'
   gem 'rspec-rails', '~> 4.0'
-  gem 'capybara', '~> 3.33'
+  gem 'capybara', '~> 3.34'
   gem 'factory_bot_rails', '~> 6.1'
   gem 'faker', '~> 2.15'
 end
