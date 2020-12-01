@@ -17,7 +17,7 @@ gem 'honeybadger', '~> 4.7'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'pry-byebug', '~> 3.7'
+  gem 'pry-byebug', '~> 3.9'
   gem 'pry-rails', '~> 0.3.9'
   gem 'rspec-rails', '~> 4.0'
   gem 'capybara', '~> 3.34'
